@@ -5,6 +5,8 @@ import './index.css';
 
 import App from './App';
 import Homepage from './Homepage/homepage';
+import Loginpage from './Loginpage/loginpage';
+
 //import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -12,6 +14,7 @@ ReactDOM.render(
   
     <Route exact path="/" component={Homepage} />
     <Route exact path="/application" component={App} />
+    <Route exact path="/accountCreation" component={Loginpage} />
 
   </BrowserRouter>,
 

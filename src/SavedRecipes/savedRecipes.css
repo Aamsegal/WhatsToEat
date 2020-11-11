@@ -1,0 +1,57 @@
+.savedRecipy {
+    border: 1px solid black;
+    background-color: cornflowerblue;
+}
+
+@media screen and (min-width: 1280px) {
+    .savedRecipyComponent {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .savedRecipyContainer {
+        text-align: left;
+    }
+
+    .savedRecipy {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        
+    }
+    
+    .savedRecipyImageContainer {
+        width: 20;
+        display: inline-block;
+    }
+
+    .savedRecipyImage {
+        width: 200px;
+        height: 200px;
+    }
+
+    .savedRecipyDelete {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .savedRecipyInfoContainer {
+        display: inline-block;
+        width: 79%;
+    }
+
+    .savedRecipyName {
+        display: block;
+        vertical-align: top;
+    }
+    
+    .savedRecipyDescription{
+        display: block;
+        width: 80%;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

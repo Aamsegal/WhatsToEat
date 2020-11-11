@@ -1,0 +1,16 @@
+.LoginPageHeaderContainer{
+    text-align: center;
+    background-color: rgb(170, 170, 170);
+}
+  
+.userLoginContainer{
+    text-align: center;
+}
+
+.loginFormInput{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

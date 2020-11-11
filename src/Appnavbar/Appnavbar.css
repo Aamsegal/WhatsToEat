@@ -1,0 +1,40 @@
+.appNavbar{
+    background-color: rgb(170, 170, 170);
+}
+
+.appNavbarLeft, .appNavbarRight {
+    display: inline-block;
+}
+
+.link-To {
+    color: inherit;
+    text-decoration: inherit; 
+}
+
+@media screen and (min-width: 1280px) {
+    .appNavbarLeft {
+        width: 35%;
+    }
+    
+    .appNavbarRight {
+        width: 64%;
+    }
+    
+    .appNavbarRight {
+        text-align: right;
+    }
+    
+    .appNavbarTitle {
+        margin-left: 50px;
+    }
+
+    .appNavbarUsername, .appNavbarNavButton {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .appNavbarUsername {
+        margin-right: 100px;
+    }
+    
+}
