@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import RecipyFilter from '../RecipyFilter/recipyFilter';
 import RecipyDisplay from '../RecipyDisplay/recipyDisplay'
 
+import './recipySection.css';
+
 class RecipySection extends Component {
     render() {
         return (
