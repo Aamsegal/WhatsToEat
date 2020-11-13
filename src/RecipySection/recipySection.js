@@ -12,7 +12,7 @@ class RecipySection extends Component {
             <div className="recipySectionComponent" id="recipySectionComponent">
 
                 <h1>RecipySection</h1>
-                <RecipyFilter />
+                <RecipyFilter recipyApiSearch={this.props.recipyApiSearch}/>
                 <RecipyDisplay />
                 
             </div>

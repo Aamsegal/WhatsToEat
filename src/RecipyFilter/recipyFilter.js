@@ -58,11 +58,55 @@ class RecipyFilter extends Component {
 
     }
 
+    startSearching() {
+        let dietIds = ['diet1','diet2','diet3'];
+        let healthIds = ['health1','health2','health3','health4','health5'];
+
+        let selectedDiets = [];
+        let selectedHealth = [];
+
+
+        for(let i = 0; i < dietIds.length; i++) {
+            //saved the query selector as the current value in the for loop
+            let currentSelectorId = `#${dietIds[i]}`;
+
+            if (document.querySelector(currentSelectorId).checked === true){
+                let currentApiValue = document.querySelector(currentSelectorId).value;
+                selectedDiets.push(currentApiValue);
+            }
+            
+        }
+
+        for(let i = 0; i < healthIds.length; i++) {
+            //saved the query selector as the current value in the for loop
+            let currentSelectorId = `#${healthIds[i]}`;
+
+            if (document.querySelector(currentSelectorId).checked === true){
+                let currentApiValue = document.querySelector(currentSelectorId).value;
+                selectedHealth.push(currentApiValue);
+            }
+            
+        }
+        
+        
+        let ingredientList = this.state.ingredients;
+
+        if (ingredientList.length === 0) {
+            alert('Please provide atleast 1 ingredient.');
+            return
+        }
+
+        this.props.recipyApiSearch(ingredientList,selectedDiets,selectedHealth);
+    }
+
     render() {
         return (
             <div className='recipyFilterContainer'>
+
                 <div className='recipyFilterFormContainer'>
+
                     <h3>Dietary Restrictions</h3>
+
                     <form className='recipyFilterForm'>
 
                         <div className="checkboxContainer">
@@ -108,16 +152,26 @@ class RecipyFilter extends Component {
                     </form>
 
                     <div className='recipyFilterFoodContainter'>
+
                         <h3>Ingredients</h3>
+
                         <form className='recipyFilterFoodForm'>
+
                             <input type="text" id="ingredients" name="ingredients" placeholder="chicken, brocolli, pasta"/>
                             
                         </form>
+                        
                         <button onClick={() => this.addIngredient()}>Add Ingredient</button>
+                    
                     </div>
                 </div>
-                <div>
+
+                <div className="addedIngredients">
                     {this.renderAllIngredients()}
+                </div>
+
+                <div className="recipySearchButtonContainer">
+                    <button className="recipySearchButton" onClick={() => this.startSearching()}>Start Searching</button>
                 </div>
             </div>
             
