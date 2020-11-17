@@ -1,4 +1,4 @@
-const recipies = {
+const recipes = {
         1: {
             name: 'Roasted Chicken',
             image: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ffood.fnr.sndimg.com%2Fcontent%2Fdam%2Fimages%2Ffood%2Ffullset%2F2013%2F7%2F19%2F1%2FFNM_090113-50-Chicken-Dinners-Ratatouille-Recipe_s4x3.jpg.rend.hgtvcom.1280.960.jpeg&f=1&nofb=1',
@@ -38,4 +38,4 @@ const recipies = {
         }
     }
 
-export default recipies;
+export default recipes;

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import AppNavbar from './Appnavbar/Appnavbar';
-import RecipySection from './RecipySection/recipySection';
+import RecipeSection from './RecipeSection/recipeSection';
 import SavedRecipes from './SavedRecipes/savedRecipes';
 import UserProfile from './UserProfile/userProfile';
 
@@ -13,13 +13,13 @@ const api_endpoint = process.env.REACT_APP_API_ENDPOINT;
 class App extends Component {
 
   state = {
-
+    recipes: [],
+    pastRecipes: []
   }
 
-  recipyApiSearch = (foodParam,dietParam,healthParams) => {
+  recipeApiSearch = (foodParam,excludeParam,dietParam,healthParams) => {
 
     let apiURL = `${api_endpoint}app_id=${app_id}&app_key=${app_key}`;
-    console.log(apiURL)
     let foodQuery = `&q=`;
 
     for(let i=0; i < foodParam.length; i++) {
@@ -34,6 +34,16 @@ class App extends Component {
 
     apiURL += foodQuery;
 
+    if(excludeParam.length !== 0) {
+      
+      for(let i=0; i < excludeParam.length; i++) {
+        let lowercaseExclude = excludeParam[i].toLowerCase();
+
+        apiURL += `&excluded=${lowercaseExclude}`;
+      }
+
+    }
+
     //for each value in diet params, add the health param to the url
     for(let i=0; i < dietParam.length; i++) {
       apiURL += `&diet=${dietParam[i]}`
@@ -43,9 +53,8 @@ class App extends Component {
       apiURL += `&health=${healthParams[i]}`
     }
 
-    apiURL += '&from=0&to=5'
+    apiURL += '&from=0&to=100'
 
-    console.log(apiURL);
     fetch(apiURL, {
       method: 'GET',
       header: {
@@ -62,9 +71,35 @@ class App extends Component {
     })
 
     .then(recipes => {
-      this.setState({recipes})
+      this.setState({recipes: recipes.hits})
     })
     
+  }
+
+  nextRecipe = () => {
+
+    if(this.state.recipes.length === 1) {
+      console.log('There are no more recipies')
+    }else {
+      //saved the current recipe to save to past recipes later
+      let currentrecipe = this.state.recipes[0];
+      
+      //Grabs all the recipes to then splice later
+      let remainingRecipes = this.state.recipes;
+
+      //Grabs past recipes to add the current recipe to
+      let pastRecipes = this.state.pastRecipes;
+
+      //removes the front most recipe from the recipe state
+      remainingRecipes.splice(0,1);
+      this.setState({recipes: remainingRecipes})
+
+      //adds the current recipe to the past recipe list and saved the past state with the new array
+      pastRecipes.push(currentrecipe);
+      this.setState({pastRecipes: pastRecipes})
+    }
+
+
   }
 
   render() {
@@ -73,7 +108,11 @@ class App extends Component {
 
         <AppNavbar />
 
-        <RecipySection recipyApiSearch={this.recipyApiSearch}/>
+        <RecipeSection 
+          recipeApiSearch={this.recipeApiSearch} 
+          currentRecipeProp={this.state.recipes[0]}
+          nextRecipeFunction={this.nextRecipe}
+        />
 
         <SavedRecipes />
 

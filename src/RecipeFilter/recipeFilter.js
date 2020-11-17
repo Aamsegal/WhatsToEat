@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './recipyFilter.css';
+import './recipeFilter.css';
 
 //  Notes for api call
 //---Can add extra health filters, just need to add another 
@@ -10,23 +10,31 @@ import './recipyFilter.css';
 
 //
 
-class RecipyFilter extends Component {
+class recipeFilter extends Component {
 
     state ={
-        ingredients: []
+        ingredients: [],
+        excludedIngredients: [],
     }
 
     //    Saves the value of the ingredient text box. Then copys the ingredients state
     //and adds the new ingredient before re-saving the state
     addIngredient() {
         let ingredient = document.getElementById('ingredients').value;
-        let currentIngredients = this.state.ingredients;
-        currentIngredients.push(ingredient)
 
-        this.setState({ingredients: currentIngredients})
-        document.getElementById('ingredients').value = '';
+        if(ingredient === '') {
+            alert('No ingredient added.')
+        }else {
+            let currentIngredients = this.state.ingredients;
+            currentIngredients.push(ingredient)
+
+            this.setState({ingredients: currentIngredients})
+            document.getElementById('ingredients').value = '';
+        }
+        
 
     }
+
     //      Goes through all the ingredients in the ingredient state and generates
     //html for each ingredient. Also links the delete button to the ingredient
     renderAllIngredients() {
@@ -58,6 +66,50 @@ class RecipyFilter extends Component {
 
     }
 
+    // Exclude methods bellow__________________________________________________________________
+
+    //  This function takes the ingredient and add is to the excluded variable in the api call
+    excludeIngredient() {
+        let excludedIngredient = document.getElementById('ingredients').value;
+
+        if(excludedIngredient === '') {
+            alert('No ingredient to exclude.')
+        }else {
+            let currentIngredients = this.state.excludedIngredients;
+            currentIngredients.push(excludedIngredient);
+
+            this.setState({excludedIngredients: currentIngredients})
+            document.getElementById('ingredients').value = '';
+        }
+    }
+
+    renderExcludedIngredients() {
+        let excludedHtml = [];
+        let excludedList = this.state.excludedIngredients;
+
+        for(let i = 0; i < excludedList.length; i++) {
+            excludedHtml.push(
+                <div className="excludedIngredient" id={`${excludedList[i]}+${i}`}>
+                    <p>{excludedList[i]}</p>
+                    <button onClick={() => this.deleteExcludedIngredients(i)}>Delete Ingredient</button>
+                </div>
+                
+                
+            )
+        }
+
+        return excludedHtml;
+    }
+
+    deleteExcludedIngredients(excludedIngredientId) {
+        let excludedList = this.state.excludedIngredients;
+        
+        excludedList.splice(excludedIngredientId,1);
+
+        this.setState({excludedIngredients: excludedList})
+    }
+
+    //Api Search method parameters____________________________________________________________
     startSearching() {
         let dietIds = ['diet1','diet2','diet3'];
         let healthIds = ['health1','health2','health3','health4','health5'];
@@ -96,18 +148,20 @@ class RecipyFilter extends Component {
             return
         }
 
-        this.props.recipyApiSearch(ingredientList,selectedDiets,selectedHealth);
+        let excludedIngredientList = this.state.excludedIngredients;
+
+        this.props.recipeApiSearch(ingredientList,excludedIngredientList,selectedDiets,selectedHealth);
     }
 
     render() {
         return (
-            <div className='recipyFilterContainer'>
+            <div className='recipeFilterContainer'>
 
-                <div className='recipyFilterFormContainer'>
+                <div className='recipeFilterFormContainer'>
 
                     <h3>Dietary Restrictions</h3>
 
-                    <form className='recipyFilterForm'>
+                    <form className='recipeFilterForm'>
 
                         <div className="checkboxContainer">
                             <input type="checkbox" id="diet1" name="diet1" value="high-protein" />
@@ -151,27 +205,34 @@ class RecipyFilter extends Component {
                         
                     </form>
 
-                    <div className='recipyFilterFoodContainter'>
+                    <div className='recipeFilterFoodContainter'>
 
                         <h3>Ingredients</h3>
 
-                        <form className='recipyFilterFoodForm'>
+                        <form className='recipeFilterFoodForm'>
 
                             <input type="text" id="ingredients" name="ingredients" placeholder="chicken, brocolli, pasta"/>
                             
                         </form>
                         
                         <button onClick={() => this.addIngredient()}>Add Ingredient</button>
+                        <button onClick={() => this.excludeIngredient()}>Exclude Ingredient</button>
                     
                     </div>
                 </div>
 
                 <div className="addedIngredients">
+                    <h3>Included</h3>
                     {this.renderAllIngredients()}
                 </div>
 
-                <div className="recipySearchButtonContainer">
-                    <button className="recipySearchButton" onClick={() => this.startSearching()}>Start Searching</button>
+                <div className="excludedIngredients">
+                    <h3>Excluded</h3>
+                    {this.renderExcludedIngredients()}
+                </div>
+
+                <div className="recipeSearchButtonContainer">
+                    <button className="recipeSearchButton" onClick={() => this.startSearching()}>Start Searching</button>
                 </div>
             </div>
             
@@ -179,4 +240,4 @@ class RecipyFilter extends Component {
     }
 }
 
-export default RecipyFilter;
+export default recipeFilter;

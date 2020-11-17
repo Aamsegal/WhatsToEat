@@ -1,52 +1,52 @@
-.savedRecipy {
+.savedrecipe {
     border: 1px solid black;
     background-color: cornflowerblue;
 }
 
 @media screen and (min-width: 1280px) {
-    .savedRecipyComponent {
+    .savedrecipeComponent {
         width: 70%;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
     }
 
-    .savedRecipyContainer {
+    .savedrecipeContainer {
         text-align: left;
     }
 
-    .savedRecipy {
+    .savedrecipe {
         margin-top: 15px;
         margin-bottom: 15px;
         
     }
     
-    .savedRecipyImageContainer {
+    .savedrecipeImageContainer {
         width: 20;
         display: inline-block;
     }
 
-    .savedRecipyImage {
+    .savedrecipeImage {
         width: 200px;
         height: 200px;
     }
 
-    .savedRecipyDelete {
+    .savedrecipeDelete {
         margin-left: auto;
         margin-right: auto;
         display: block;
     }
 
-    .savedRecipyInfoContainer {
+    .savedrecipeInfoContainer {
         display: inline-block;
         width: 79%;
     }
 
-    .savedRecipyName {
+    .savedrecipeName {
         display: block;
     }
     
-    .savedRecipyDescription{
+    .savedrecipeDescription{
         display: block;
         width: 80%;
         text-align: left;

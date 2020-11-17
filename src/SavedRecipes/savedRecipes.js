@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import './savedRecipes.css';
 
-import Recipes from './savedRecipyList'; 
+import Recipes from './savedRecipeList'; 
 
 class SavedRecipies extends Component {
-    //  As of pre server, when im pulling from my custom recipy list, this function
-    //itterated through the recipy object and generates html for each recipy and
+    //  As of pre server, when im pulling from my custom recipe list, this function
+    //itterated through the recipe object and generates html for each recipe and
     //returns all of the htlp to the return call for this component
     checkRecipes() {
-        let recipyHTML = [];
+        let recipeHTML = [];
         
         for (const key in Recipes) {
-            const currentRecipy = Recipes[key];
-            const imageLink = currentRecipy.image;
+            const currentrecipe = Recipes[key];
+            const imageLink = currentrecipe.image;
 
-            recipyHTML.push(
-                <div className='savedRecipy' id={`savedRecipy+${key}+${currentRecipy.name}`}>
+            recipeHTML.push(
+                <div className='savedrecipe' id={`savedrecipe+${key}+${currentrecipe.name}`}>
 
-                    <div className='savedRecipyImageContainer'>
-                        <img className='savedRecipyImage' src={imageLink}></img>
-                        <button className='savedRecipyDelete'>Delete Recipy</button>
+                    <div className='savedrecipeImageContainer'>
+                        <img className='savedrecipeImage' src={imageLink}></img>
+                        <button className='savedrecipeDelete'>Delete recipe</button>
                     </div>
 
-                    <div className='savedRecipyInfoContainer'>
+                    <div className='savedrecipeInfoContainer'>
                         
-                        <div className='savedRecipyName'>
-                            <h1>{currentRecipy.name}</h1>
+                        <div className='savedrecipeName'>
+                            <h1>{currentrecipe.name}</h1>
                         </div>
                         
 
-                        <div className='savedRecipyDescription'>
-                            <p>{currentRecipy.description}</p>
+                        <div className='savedrecipeDescription'>
+                            <p>{currentrecipe.description}</p>
                         </div>
 
                     </div>
@@ -38,13 +38,13 @@ class SavedRecipies extends Component {
             )
         }
 
-        return recipyHTML;
+        return recipeHTML;
     }
 
     render() {
         //console.log(Recipies)
         return (
-            <div className="savedRecipyComponent" id="savedRecipyComponent" style={{display: 'none'}}>
+            <div className="savedrecipeComponent" id="savedrecipeComponent" style={{display: 'none'}}>
                 <h1>SavedRecipies</h1>
                 <div className="savedRecipesContainer">
                     {this.checkRecipes()}

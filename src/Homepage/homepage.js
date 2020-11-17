@@ -29,7 +29,7 @@ class HomePage extends Component {
 
             <div className='noAccountContainer'>
                 <h3>Dont want to create an account?</h3>
-                <button className='findARecipyButton'><Link to='/application'>Start searching!</Link></button>
+                <button className='findArecipeButton'><Link to='/application'>Start searching!</Link></button>
             </div>
         </div>
 

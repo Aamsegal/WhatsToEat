@@ -1,5 +1,5 @@
 @media screen and (min-width: 1280px) {
-    .recipyFilterContainer {
+    .recipeFilterContainer {
         display: inline-block;
         text-align: center;
         width: 25%;
@@ -7,7 +7,7 @@
         border: 1px solid black;
     }
 
-    .recipyFilterForm {
+    .recipeFilterForm {
         border: 1px solid black;
         width: 80%;
         margin-left: auto;
