@@ -13,12 +13,13 @@ class SavedRecipies extends Component {
         for (const key in Recipes) {
             const currentrecipe = Recipes[key];
             const imageLink = currentrecipe.image;
+            let recipeName = currentrecipe.name;
 
             recipeHTML.push(
                 <div className='savedrecipe' id={`savedrecipe+${key}+${currentrecipe.name}`}>
 
                     <div className='savedrecipeImageContainer'>
-                        <img className='savedrecipeImage' src={imageLink}></img>
+                        <img className='savedrecipeImage' src={imageLink} alt={recipeName}></img>
                         <button className='savedrecipeDelete'>Delete recipe</button>
                     </div>
 
@@ -42,10 +43,9 @@ class SavedRecipies extends Component {
     }
 
     render() {
-        //console.log(Recipies)
         return (
             <div className="savedrecipeComponent" id="savedrecipeComponent" style={{display: 'none'}}>
-                <h1>SavedRecipies</h1>
+                <h1>Saved Recipes</h1>
                 <div className="savedRecipesContainer">
                     {this.checkRecipes()}
                 </div>

@@ -10,8 +10,11 @@ class recipeSection extends Component {
         return (
 
             <div className="recipeSectionComponent" id="recipeSectionComponent">
-
-                <h1>recipeSection</h1>
+                
+                <div className="recipeSectionTitleContainer">
+                    <h1 className="recipeSectionTitle">Recipe Section</h1>
+                </div>
+                
                 <RecipeFilter recipeApiSearch={this.props.recipeApiSearch}/>
                 <RecipeDisplay 
                     currentRecipeProp={this.props.currentRecipeProp}

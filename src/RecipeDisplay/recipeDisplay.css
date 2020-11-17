@@ -1,9 +1,9 @@
 @media screen and (min-width: 1280px) {
     .recipeDisplayContainer {
         display: inline-block;
-        text-align: left;
+        text-align: center;
+        vertical-align: top;
         width: 74.75%;
 
-        border: 1px solid black;
     }
 }

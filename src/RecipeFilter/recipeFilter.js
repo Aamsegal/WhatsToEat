@@ -144,7 +144,7 @@ class recipeFilter extends Component {
         let ingredientList = this.state.ingredients;
 
         if (ingredientList.length === 0) {
-            alert('Please provide atleast 1 ingredient.');
+            alert('Please provide at least 1 ingredient.');
             return
         }
 
@@ -205,7 +205,7 @@ class recipeFilter extends Component {
                         
                     </form>
 
-                    <div className='recipeFilterFoodContainter'>
+                    <div className='recipeFilterFoodContainer'>
 
                         <h3>Ingredients</h3>
 
@@ -221,15 +221,18 @@ class recipeFilter extends Component {
                     </div>
                 </div>
 
-                <div className="addedIngredients">
-                    <h3>Included</h3>
-                    {this.renderAllIngredients()}
-                </div>
+                <div className="ingredientRequirements">
+                    <div className="addedIngredients">
+                        <h3>Included</h3>
+                        {this.renderAllIngredients()}
+                    </div>
 
-                <div className="excludedIngredients">
-                    <h3>Excluded</h3>
-                    {this.renderExcludedIngredients()}
+                    <div className="excludedIngredients">
+                        <h3>Excluded</h3>
+                        {this.renderExcludedIngredients()}
+                    </div>
                 </div>
+                
 
                 <div className="recipeSearchButtonContainer">
                     <button className="recipeSearchButton" onClick={() => this.startSearching()}>Start Searching</button>
