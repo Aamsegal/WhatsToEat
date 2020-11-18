@@ -4,16 +4,21 @@ import './recipeDisplay.css';
 
 class recipeDisplay extends Component {
 
-    renderBaseInfo() {
-        let currentRecipeHTML = [];
-
+    isRecipeSearched() {
         if(this.props.currentRecipeProp === undefined) {
-            
-            currentRecipeHTML.push(
+            return (
                 <div className="emptyPropsChecker">
                     <h1>Start searching for a recipe!</h1>
                 </div>
             )
+        }
+    }
+
+    renderBaseInfo() {
+        let currentRecipeHTML = [];
+
+        if(this.props.currentRecipeProp === undefined) {
+            return
         }else {
             let currentRecipeInfo = this.props.currentRecipeProp.recipe;
 
@@ -26,8 +31,8 @@ class recipeDisplay extends Component {
                     </div>
 
                     <div className="nutritionSection">
-                        <p className="calories">{`${Math.round(currentRecipeInfo.calories)} Calories`}</p>                        
                         <p className="servingSize">{`Serving Size: ${currentRecipeInfo.yield}`}</p>
+                        <p className="calories">{`Calories per serving: ${Math.round((currentRecipeInfo.calories)/currentRecipeInfo.yield)}`}</p>                        
                         <p className="cookTime">{`Cook Time: ${currentRecipeInfo.totalTime} minutes`}</p>
                     </div>               
                 </div>
@@ -90,7 +95,7 @@ class recipeDisplay extends Component {
             let recipeInfo = this.props.currentRecipeProp.recipe;
 
             extraDetailHTML.push(
-                <a className="recipeLink" href={recipeInfo.url} target="_blank">Cooking Details!</a>
+                <a className="recipeLink" href={recipeInfo.url} target="_blank" rel="noreferrer">Cooking Details!</a>
             )
         }
 
@@ -101,7 +106,7 @@ class recipeDisplay extends Component {
         if(this.props.currentRecipeProp === undefined) {
             return
         }else {
-            return <button onClick={() => this.props.nextRecipeFunction()}>Next Recipe</button>
+            return <button className="nextRecipeButton" onClick={() => this.props.nextRecipeFunction()}>Next Recipe</button>
         }
     }
 
@@ -110,12 +115,12 @@ class recipeDisplay extends Component {
             
             <div className='recipeDisplayContainer'>
 
-                <div className="baseRecipeInfo">
-                    {this.renderBaseInfo()}
+                <div className="isRecipeSearched">
+                    {this.isRecipeSearched()}
                 </div>
 
-                <div className="allergyContainer">
-                    {this.renderAllergies()}
+                <div className="baseRecipeInfoContainer">
+                    {this.renderBaseInfo()}
                 </div>
 
                 <div className="ingredientList">
@@ -124,11 +129,17 @@ class recipeDisplay extends Component {
                     </ul>
                 </div>
 
-                <div className="extraDetail">
+                <div className="allergyContainer">
+                    {this.renderAllergies()}
+                </div>
+
+                <div className="extraDetailContainer">
                     {this.renderExtraDetail()}
                 </div>
 
-                {this.renderNextButton()}
+                <div className="nextRecipeButtonContainer">
+                    {this.renderNextButton()}
+                </div>
                 
             </div>
 

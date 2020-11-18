@@ -41,4 +41,8 @@
         min-height: 100%;
     }
 
+    .recipeSearchButtonContainer {
+        margin-top: 20px;
+    }
+
 }
