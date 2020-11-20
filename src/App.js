@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 
+//Placeholder stuff
+
 import AppNavbar from './Appnavbar/Appnavbar';
 import RecipeSection from './RecipeSection/recipeSection';
 import SavedRecipes from './SavedRecipes/savedRecipes';
