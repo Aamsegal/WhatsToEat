@@ -53,7 +53,7 @@ class App extends Component {
       apiURL += `&health=${healthParams[i]}`
     }
 
-    apiURL += '&from=0&to=100'
+    apiURL += '&from=0&to=75'
 
     fetch(apiURL, {
       method: 'GET',
