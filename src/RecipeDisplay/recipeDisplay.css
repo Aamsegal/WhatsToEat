@@ -63,14 +63,19 @@
         font-size: 20px;
     }
 
-    .nextRecipeButtonContainer, .extraDetailContainer {
+    .saveRecipeButtonContainer, .extraDetailContainer {
         display: inline-block;
         width: 50%;
         margin-top: 20px;
         margin-bottom: 20px;
     }
 
-    .nextRecipeButton {
+    .nextRecipeButtonContainer {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .nextRecipeButton, .saveRecipeButton {
         border-radius: 5px;
         width: 150px;
         font-size: 15px;

@@ -19,6 +19,7 @@ class recipeSection extends Component {
                 <RecipeDisplay 
                     currentRecipeProp={this.props.currentRecipeProp}
                     nextRecipeFunction={this.props.nextRecipeFunction}
+                    saveRecipeFunction={this.props.saveRecipeFunction}
                 />
                 
             </div>

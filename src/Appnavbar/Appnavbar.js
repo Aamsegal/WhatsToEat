@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import "./Appnavbar.css";
+
+const cookies = new Cookies();
 
 class Appnavbar extends Component {
 
@@ -28,6 +31,17 @@ class Appnavbar extends Component {
         }
     }
 
+    //  Checks cookies to see if we have the auth token and account name
+    isLoggedIn() {
+        let account_name = cookies.get('account_name');
+
+        if(account_name === undefined || account_name === '') {
+            account_name = 'Guest'
+        }
+
+        return <p className="appNavbarUsername">{account_name}</p>
+    }
+
     render() {
         return (
             <div className="appNavbar">
@@ -37,7 +51,7 @@ class Appnavbar extends Component {
                 </div>
                 
                 <div className="appNavbarRight">
-                    <p className="appNavbarUsername">User X</p>
+                    {this.isLoggedIn()}
                     <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('recipe')}>recipe Section</button>
                     <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Saved')}>Saved Recipes</button>
                     <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Profile')}>User Profile</button>

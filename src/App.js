@@ -1,5 +1,7 @@
 
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
+import config from './config';
 
 //Placeholder stuff
 
@@ -7,6 +9,8 @@ import AppNavbar from './Appnavbar/Appnavbar';
 import RecipeSection from './RecipeSection/recipeSection';
 import SavedRecipes from './SavedRecipes/savedRecipes';
 import UserProfile from './UserProfile/userProfile';
+
+const cookies = new Cookies();
 
 const app_id = process.env.REACT_APP_APP_ID;
 const app_key = process.env.REACT_APP_APP_KEY;
@@ -100,8 +104,112 @@ class App extends Component {
       pastRecipes.push(currentrecipe);
       this.setState({pastRecipes: pastRecipes})
     }
+  }
+
+  saveRecipe = () => {
+    //  Check for login token to identify if the user is logged in
+    let loginToken = cookies.get('loginToken');
+
+    if(loginToken === undefined || loginToken === '') {
+      alert("You must be logged in to save recipe's")
+    }
+    let recipe_id = '';
+    let recipe_name = this.state.recipes[0].recipe.label;
+    let recipe_image_link = this.state.recipes[0].recipe.image;
+    let serving_size = this.state.recipes[0].recipe.yield;
+    let total_calories = Math.round(this.state.recipes[0].recipe.calories);
+    let cook_time = this.state.recipes[0].recipe.totalTime;
+    let cooking_instruction_link = this.state.recipes[0].recipe.url;
+    let ingredientList = this.state.recipes[0].recipe.ingredientLines;
+    let allergyList = this.state.recipes[0].recipe.healthLabels;
+
+    //  Saves recipe info for api call
+    const recipeInfo = { 
+      recipe_name, 
+      recipe_image_link, 
+      serving_size, 
+      total_calories, 
+      cook_time, 
+      cooking_instruction_link, 
+      loginToken
+    }
+
+    //  Api call to save recipe
+    fetch(`${config.DATABASE_API_ENDPOINT}/api/recipeEndpoint`, {
+      method: 'POST',
+      body: JSON.stringify(recipeInfo),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+
+    .then(res => {
+      if(!res.ok) {
+        return res.json().then(e => Promise.reject(e))
+      }
+      return res.json()
+    })
+
+    .then(data => {
+      recipe_id = data.id;
+      
+      this.addIngredients(recipe_id,ingredientList);
+
+      this.addAllergies(recipe_id, allergyList);
+    })
+
+    
 
 
+  }
+
+  addIngredients(recipe_id, ingredientList) {
+
+    for(let i = 0; i < ingredientList.length; i++) {
+      let ingredient = ingredientList[i];
+      let ingredientInfo = {recipe_id, ingredient};
+
+      fetch(`${config.DATABASE_API_ENDPOINT}/api/ingredientEndpoint`, {
+        method: 'POST',
+        body: JSON.stringify(ingredientInfo),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+
+      .then(res => {
+        if(!res.ok) {
+          return res.json().then(e => Promise.reject(e))
+        }
+
+        return res.json()
+      })
+
+    }
+  }
+
+  addAllergies(recipe_id, allergyList) {
+    
+    for(let i = 0; i < allergyList.length; i ++) {
+      let allergy_info = allergyList[i];
+      let allergyInfo = {recipe_id, allergy_info};
+
+      fetch(`${config.DATABASE_API_ENDPOINT}/api/allergyEndpoint`, {
+        method: 'POST',
+        body: JSON.stringify(allergyInfo),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+
+      .then(res => {
+        if(!res.ok) {
+          return res.json().then(e => Promise.reject(e))
+        }
+
+        return res.json()
+      })
+    }
   }
 
   render() {
@@ -114,6 +222,7 @@ class App extends Component {
           recipeApiSearch={this.recipeApiSearch} 
           currentRecipeProp={this.state.recipes[0]}
           nextRecipeFunction={this.nextRecipe}
+          saveRecipeFunction={this.saveRecipe}
         />
 
         <SavedRecipes />

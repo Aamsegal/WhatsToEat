@@ -110,6 +110,14 @@ class recipeDisplay extends Component {
         }
     }
 
+    renderSaveRecipeButton() {
+        if(this.props.currentRecipeProp === undefined) {
+            return
+        }else {
+            return <button className="saveRecipeButton" onClick={() => this.props.saveRecipeFunction()}>Save!</button>
+        }
+    }
+
     render() {
         return (
             
@@ -137,10 +145,13 @@ class recipeDisplay extends Component {
                     {this.renderExtraDetail()}
                 </div>
 
+                <div className="saveRecipeButtonContainer">
+                    {this.renderSaveRecipeButton()}
+                </div>
+
                 <div className="nextRecipeButtonContainer">
                     {this.renderNextButton()}
                 </div>
-                
             </div>
 
 

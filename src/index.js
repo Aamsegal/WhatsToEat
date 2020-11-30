@@ -14,7 +14,7 @@ ReactDOM.render(
   
     <Route exact path="/" component={Homepage} />
     <Route exact path="/application" component={App} />
-    <Route exact path="/accountCreation" component={Loginpage} />
+    <Route exact path="/loginPage" component={Loginpage} />
 
   </BrowserRouter>,
 
