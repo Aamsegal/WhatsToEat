@@ -85,11 +85,13 @@ class HomePage extends Component {
       const expireTime = 60*60*24*7; // This is one minute
       cookies.set('loginToken', data[0], {secure: true, maxAge: expireTime});
       window.alert('Account created. Enjoy!')
+      
+      return <Redirect to='/application'/>
     })
     
     //.catch(error)
 
-    return <Redirect to='/application'/>
+    
   }
 
   render() {

@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Cookies from 'universal-cookie';
+//import Cookies from 'universal-cookie';
+import { useCookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 
 import config from '../config';
 import './loginpage.css';
 
 var CryptoJS = require("crypto-js");
-const cookies = new Cookies();
+//const cookies = new Cookies();
 
-class Loginpage extends Component {
+class LoginPage extends Component {
 
     loginToAccount() {
+        
         let username = document.getElementById('userNameFormLogin').value;
         let user_password = document.getElementById('passwordFormLogin').value;
 
@@ -27,7 +30,9 @@ class Loginpage extends Component {
         })
 
         .then(res => {
+
             if(!res.ok) {
+                alert('No user with that username and password found. Try again.')
                 return res.json().then(e => Promise.reject(e))
             }
 
@@ -35,18 +40,29 @@ class Loginpage extends Component {
         })
 
         .then(data => {
-            if(data.length === 0) {
-                return alert.length('No user with that username and password found. Try again.')
-            } else{
-                //  normal expire time will be a week with the value of 60*60*24*7
-                const expireTime = 60*60*24*7; // This is one minute
-                cookies.set('loginToken', data[0].id, {secure: true, maxAge: expireTime});
-                cookies.set('account_name', data[1].account_name, {secure: true, maxAge: expireTime});
-                alert(`You have logged into ${data[1].account_name}.`)
-            }
+            console.log(data)
+            let loginTokenCookie = data[0].id;
+            let accountNameCookie = data[1].account_name;
+            //  normal expire time will be a week with the value of 60*60*24*7
+            const expireTime = 60*60*24*7; // This is one minute
+
+            Cookies.set('loginToken', loginTokenCookie, { expires: 7, secure: true,})
+            //Cookies.set('loginToken', data[0].id, {expire: 7});
+            //Cookies.set('account_name', data[1].account_name, {secure: true, maxAge: expireTime});
+            //Cookies.set('chromeCookie', 'it works!', {secure: true, maxAge: expireTime});
+            
+
+           //setCookie('loginToken', 'test', {path: '/', secure: true, maxAge: expireTime})
+
+            alert(`You have logged into ${data[1].account_name}.`);
+
+            //  This redirects to this link.
+            //window.location = "http://localhost:3000/application";
+            console.log(Cookies.get('loginToken'))
         })
 
-
+        
+        //  Redirect to='/application
     }
 
     render() {
@@ -75,4 +91,4 @@ class Loginpage extends Component {
     }
 }
 
-export default Loginpage;
+export default LoginPage;

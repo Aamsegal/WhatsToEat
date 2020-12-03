@@ -1,20 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { CookiesProvider } from 'react-cookie';
 import './index.css';
 
 import App from './App';
 import Homepage from './Homepage/homepage';
-import Loginpage from './Loginpage/loginpage';
+import LoginPage from './Loginpage/loginpage';
 
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
-  
-    <Route exact path="/" component={Homepage} />
-    <Route exact path="/application" component={App} />
-    <Route exact path="/loginPage" component={Loginpage} />
+
+    <CookiesProvider>
+
+      <Route exact path="/" component={Homepage} />
+      <Route exact path="/application" component={App} />
+      <Route exact path="/loginPage" component={LoginPage} />
+
+    </CookiesProvider>
 
   </BrowserRouter>,
 

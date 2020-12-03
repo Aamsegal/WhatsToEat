@@ -1,50 +1,102 @@
 import React, { Component } from 'react';
+import Cookies from 'universal-cookie';
 import './savedRecipes.css';
 
-import Recipes from './savedRecipeList'; 
+const cookies = new Cookies();
 
-class SavedRecipies extends Component {
-    //  As of pre server, when im pulling from my custom recipe list, this function
-    //itterated through the recipe object and generates html for each recipe and
-    //returns all of the htlp to the return call for this component
+class SavedRecipes extends Component {
+
+    //  Looks for saved recipes
     checkRecipes() {
-        let recipeHTML = [];
-        
-        for (const key in Recipes) {
-            const currentrecipe = Recipes[key];
-            const imageLink = currentrecipe.image;
-            let recipeName = currentrecipe.name;
+        let savedRecipeHTML = [];
+        let savedRecipes = this.props.savedRecipes;
+        let loginToken = cookies.get('loginToken');
 
-            recipeHTML.push(
-                <div className='savedrecipe' id={`savedrecipe+${key}+${currentrecipe.name}`}>
-
-                    <div className='savedrecipeImageContainer'>
-                        <img className='savedrecipeImage' src={imageLink} alt={recipeName}></img>
-                        <button className='savedrecipeDelete'>Delete recipe</button>
-                    </div>
-
-                    <div className='savedrecipeInfoContainer'>
-                        
-                        <div className='savedrecipeName'>
-                            <h1>{currentrecipe.name}</h1>
-                        </div>
-                        
-
-                        <div className='savedrecipeDescription'>
-                            <p>{currentrecipe.description}</p>
-                        </div>
-
-                    </div>
-                </div>
+        if(loginToken === undefined) {
+            savedRecipeHTML.push(
+                <h1>Please Login to view saved recipes.</h1>
             )
+        }else {
+            for(let i = 0; i < savedRecipes.length; i++) {
+                const currentRecipe = savedRecipes[i];
+                console.log(currentRecipe,'a')
+                //console.log(currentRecipe.ingredients,'b')
+
+                const imageLink = currentRecipe.recipe_image_link;
+                const recipeName = currentRecipe.recipe_name;
+                const recipeLink = currentRecipe.cooking_instruction_link;
+                //const cookTime = currentRecipe.cook_time;
+                //const servingSize = currentRecipe.serving_size;
+                //const calories = currentRecipe.total_calories;
+                //const allergies = currentRecipe.allergies;
+                const currentIngredients = currentRecipe.ingredients;
+                console.log(currentIngredients)
+
+                savedRecipeHTML.push(
+                    <div className='savedRecipeContainer' id={`savedRecipe+${i}+${currentRecipe.name}+${i}`}>
+
+                        <div className='savedRecipeLeftContainer'>
+
+                            <div className='savedRecipeName'>
+                                <h1>{recipeName}</h1>
+                            </div>
+
+                            <img className='savedRecipeImage' src={imageLink} alt={recipeName}></img>
+                            
+                            <div className='savedRecipeLink'>
+                                <a href={recipeLink} target="_blank" rel="noreferrer">More Recipe Info!</a>
+                            </div>
+
+                        </div>
+
+                        <div className='savedRecipeRightContainer'>
+                            
+                            <div className='savedRecipeIngredients'>
+
+                                <ul className="savedIngredientList">
+
+                                    {/*this.renderSavedIngredients(currentIngredients)*/}
+                                    
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        <button className='savedRecipeDelete'>Delete recipe</button>
+                    
+                    </div>
+                )
+            }
         }
 
-        return recipeHTML;
+        return savedRecipeHTML;
+    }
+
+    renderSavedIngredients(ingredients) {
+        let savedIngredientHTML = [];
+        
+        for(let z=0; z < ingredients.length; z++) {
+            
+            savedIngredientHTML.push(
+                <li className="savedIngredientLI">
+                    {ingredients[z]}
+                </li>
+            )
+
+        }
+
+        return savedIngredientHTML;
+        
+    }
+
+    renderSavedAllergies() {
+
     }
 
     render() {
         return (
-            <div className="savedrecipeComponent" id="savedrecipeComponent" style={{display: 'none'}}>
+            <div className="savedRecipeComponent" id="savedRecipeComponent" style={{display: 'none'}}>
                 <h1>Saved Recipes</h1>
                 <div className="savedRecipesContainer">
                     {this.checkRecipes()}
@@ -56,4 +108,4 @@ class SavedRecipies extends Component {
     }
 }
 
-export default SavedRecipies;
+export default SavedRecipes;

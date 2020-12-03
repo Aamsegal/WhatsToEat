@@ -11,19 +11,19 @@ class Appnavbar extends Component {
         if(buttonPressed === 'recipe') {
 
             document.getElementById('recipeSectionComponent').style.display = 'block';
-            document.getElementById('savedrecipeComponent').style.display = 'none';
+            document.getElementById('savedRecipeComponent').style.display = 'none';
             document.getElementById('userProfileComponent').style.display = 'none';
 
         }else if (buttonPressed === 'Saved') {
             
             document.getElementById('recipeSectionComponent').style.display = 'none';
-            document.getElementById('savedrecipeComponent').style.display = 'block';
+            document.getElementById('savedRecipeComponent').style.display = 'block';
             document.getElementById('userProfileComponent').style.display = 'none';
 
         }else if (buttonPressed === 'Profile'){
             
             document.getElementById('recipeSectionComponent').style.display = 'none';
-            document.getElementById('savedrecipeComponent').style.display = 'none';
+            document.getElementById('savedRecipeComponent').style.display = 'none';
             document.getElementById('userProfileComponent').style.display = 'block';
 
         }else {
