@@ -13,6 +13,9 @@ var CryptoJS = require("crypto-js");
 class LoginPage extends Component {
 
     loginToAccount() {
+        let chromeTest = 'pleaseWork';
+        Cookies.set('testingChrome', chromeTest, { expires: 7, secure: true,});
+
         
         let username = document.getElementById('userNameFormLogin').value;
         let user_password = document.getElementById('passwordFormLogin').value;
