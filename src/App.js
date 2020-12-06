@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
-import { useCookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 import config from './config';
 
 //Placeholder stuff
@@ -10,8 +9,6 @@ import AppNavbar from './Appnavbar/Appnavbar';
 import RecipeSection from './RecipeSection/recipeSection';
 import SavedRecipes from './SavedRecipes/savedRecipes';
 import UserProfile from './UserProfile/userProfile';
-
-const cookies = new Cookies();
 
 const app_id = process.env.REACT_APP_APP_ID;
 const app_key = process.env.REACT_APP_APP_KEY;
@@ -27,16 +24,17 @@ class App extends Component {
 
   //  Checks login token on mount
   componentDidMount() {
-    let loginToken = cookies.get('loginToken');
+    let loginToken = Cookies.get('loginToken');
 
     if(loginToken !== undefined) {
       this.getSavedRecipes(loginToken)
     }
     
-  }
+  };
 
   //  Uses login token param to grab recipes from database
-  getSavedRecipes(loginToken) {
+  getSavedRecipes (loginToken) {
+
     fetch(`${config.DATABASE_API_ENDPOINT}/api/recipeEndpoint/getRecipe/${loginToken}`, {
       method: 'GET',
       header: {
@@ -54,24 +52,43 @@ class App extends Component {
     })
 
     .then(userRecipes => {
+
       this.setState({savedRecipes: userRecipes})
 
-      let recipeList = this.state.savedRecipes
+      let recipeList = [...this.state.savedRecipes];
+      console.log(recipeList, 'before for loop')
 
-      for(let i=0; i < userRecipes.length; i++){
+      for(let i=0; i < recipeList.length; i++){
 
-        this.getSavedIngredients(recipeList[i], i)
-        this.getSavedAllergies(recipeList[i], i)
+        /*
+        let currentIngredients = this.getSavedIngredients(recipeList[i], i);
+        let currentAllergies = this.getSavedAllergies(recipeList[i], i);
+        */
+
+        //return new Promise(resolve => {
+          let currentIngredients = this.getSavedIngredients(recipeList[i], i);
+          //let currentAllergies = this.getSavedAllergies(recipeList[i], i);
+          //resolve(currentIngredients,);
+          console.log(currentIngredients,'ingredient call')
+        //})
+        
+        /*
+        .then(currentIngredients => {
+                  console.log(currentIngredients,'currentIngredients')
+
+        })
+        */
       }
-    })
 
-    
+      //console.log(currentIngredients)
+    })
     
   }
 
   //  Goes through each recipe and makes an api call for ingredients and allergy info
   getSavedIngredients(recipe, savedRecipeIndex) {
-    let recipeId = recipe.id;
+    let recipeId = recipe.id;      
+    let ingredientArray = [];
 
     fetch(`${config.DATABASE_API_ENDPOINT}/api/ingredientEndpoint/recipe/${recipeId}`, {
       method: 'GET',
@@ -81,6 +98,7 @@ class App extends Component {
     })
 
     .then(res => {
+
       if(!res.ok) {
         return res.json().then(e => Promise.reject(e))
       }
@@ -90,34 +108,25 @@ class App extends Component {
 
     //  Adding the recipe array to teh 
     .then(ingredients => {
-      let ingredientArray = [];
+      console.log(ingredients, 'Ingredient list')
 
       // Change the array of objects into just an array of ingredients
       for(let x=0; x < ingredients.length; x++) {
         ingredientArray.push(ingredients[x].ingredient)
       }
-
-      //  Adds an object key of ingredients to the recipe
-      //FOR SOME REASON THIS SAVES OVER THE STATE
-      recipe.ingredients = ingredientArray;
-
-      //this.setState(savedRecipes[savedRecipeIndex]:)
-      
-      /*
-      this.setState(prevState => ({
-        savedRecipes: {
-          ...prevState.savedRecipes[savedRecipeIndex],recipe
-      }}));
-      */
-      
-      //console.log(this.state.savedRecipes)
-
+      //console.log(ingredientArray, 'ingredient Array in get ingredients')
+      console.log(ingredientArray, 'ingredient arrays')
+      return ingredientArray;      
     })
+    console.log(ingredientArray)
+
+    return ingredientArray;
+
 
   }
 
   //  Adds the allergy info the the recipes
-  getSavedAllergies(recipe, savedRecipeIndex) {
+  getSavedAllergies = (recipe, savedRecipeIndex) => {
     let recipeId = recipe.id;
 
     fetch(`${config.DATABASE_API_ENDPOINT}/api/allergyEndpoint/recipe/${recipeId}`, {
@@ -237,11 +246,12 @@ class App extends Component {
   //  Saves recipe to the users account
   saveRecipe = () => {
     //  Check for login token to identify if the user is logged in
-    let loginToken = cookies.get('loginToken');
+    let loginToken = Cookies.get('loginToken');
 
     if(loginToken === undefined || loginToken === '') {
       alert("You must be logged in to save recipe's")
     }
+
     let recipe_id = '';
     let recipe_name = this.state.recipes[0].recipe.label;
     let recipe_image_link = this.state.recipes[0].recipe.image;
@@ -282,16 +292,21 @@ class App extends Component {
     .then(data => {
       recipe_id = data.id;
       
-      this.addIngredients(recipe_id,ingredientList);
+      this.addIngredients(recipe_id, ingredientList);
 
       this.addAllergies(recipe_id, allergyList);
+
+      let loginToken = Cookies.get('loginToken');
+
+      return loginToken
     })
 
-    
-
-
+    .then(loginToken => {
+      this.getSavedRecipes(loginToken);
+    })
   }
 
+  //  Adds ingredients for the current recipe to the database
   addIngredients(recipe_id, ingredientList) {
 
     for(let i = 0; i < ingredientList.length; i++) {
@@ -317,6 +332,7 @@ class App extends Component {
     }
   }
 
+  //  Adds allergies for the current recipe to the database
   addAllergies(recipe_id, allergyList) {
     
     for(let i = 0; i < allergyList.length; i ++) {
@@ -341,6 +357,37 @@ class App extends Component {
     }
   }
 
+  //  Deletes the recipes and makes a call to get the remaining recipes
+  deleteRecipe = (recipe_Id, recipe_name) => {
+
+    let confirmDeleteRecipe = window.confirm(`Are you sure you want to delete ${recipe_name}?`);
+
+    if(confirmDeleteRecipe == true) {
+
+      fetch(`${config.DATABASE_API_ENDPOINT}/api/recipeEndpoint/deleteRecipe/${recipe_Id}`, {
+        method: 'DELETE',
+        header: {
+          'content-type': 'application/json'
+        }
+      })
+
+      .then(res => {
+
+        if(!res.ok) {
+          return res.json().then(e => Promise.reject(e)) 
+        }
+
+        return Cookies.get('loginToken')
+      })
+
+      .then(loginToken => {
+
+        this.getSavedRecipes(loginToken);
+      })
+
+    }
+  }
+
   render() {
     return (
       <div className="application">
@@ -354,7 +401,9 @@ class App extends Component {
           saveRecipeFunction={this.saveRecipe}
         />
 
-        <SavedRecipes savedRecipes={this.state.savedRecipes}/>
+        <SavedRecipes 
+          savedRecipes={this.state.savedRecipes}
+          deleteRecipeFunction={this.deleteRecipe}/>
 
         <UserProfile />
 

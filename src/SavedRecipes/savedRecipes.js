@@ -19,29 +19,28 @@ class SavedRecipes extends Component {
         }else {
             for(let i = 0; i < savedRecipes.length; i++) {
                 const currentRecipe = savedRecipes[i];
-                console.log(currentRecipe,'a')
-                //console.log(currentRecipe.ingredients,'b')
-
+                                
+                const currentRecipeId = currentRecipe.id;
                 const imageLink = currentRecipe.recipe_image_link;
-                const recipeName = currentRecipe.recipe_name;
+                const currentRecipeName = currentRecipe.recipe_name;
                 const recipeLink = currentRecipe.cooking_instruction_link;
                 //const cookTime = currentRecipe.cook_time;
                 //const servingSize = currentRecipe.serving_size;
                 //const calories = currentRecipe.total_calories;
-                //const allergies = currentRecipe.allergies;
+                const currentAllergies = currentRecipe.allergies;
                 const currentIngredients = currentRecipe.ingredients;
-                console.log(currentIngredients)
-
+                //console.log(currentRecipe, currentRecipe.ingredients)
+                
                 savedRecipeHTML.push(
-                    <div className='savedRecipeContainer' id={`savedRecipe+${i}+${currentRecipe.name}+${i}`}>
+                    <div className='savedRecipeContainer' id={currentRecipeId}>
 
                         <div className='savedRecipeLeftContainer'>
 
                             <div className='savedRecipeName'>
-                                <h1>{recipeName}</h1>
+                                <h1>{currentRecipeName}</h1>
                             </div>
 
-                            <img className='savedRecipeImage' src={imageLink} alt={recipeName}></img>
+                            <img className='savedRecipeImage' src={imageLink} alt={currentRecipeName}></img>
                             
                             <div className='savedRecipeLink'>
                                 <a href={recipeLink} target="_blank" rel="noreferrer">More Recipe Info!</a>
@@ -63,10 +62,11 @@ class SavedRecipes extends Component {
 
                         </div>
 
-                        <button className='savedRecipeDelete'>Delete recipe</button>
+                        <button className='savedRecipeDelete' onClick={() => this.props.deleteRecipeFunction(currentRecipeId,currentRecipeName)}>Delete recipe</button>
                     
                     </div>
                 )
+                
             }
         }
 

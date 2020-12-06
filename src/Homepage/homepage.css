@@ -4,7 +4,7 @@
 }
   
 .userLoginContainer{
-text-align: center;
+    text-align: center;
 }
 
 .loginFormInput{
@@ -15,6 +15,17 @@ margin-top: 5px;
 margin-bottom: 5px;
 }
 
+.homePageErrorContainer{
+    min-height: 20px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homePageErrorText{
+    font-weight: bold;
+    color: red;
+}
 .userAccountButtons{
 margin-top: 20px;
 margin-bottom: 20px;

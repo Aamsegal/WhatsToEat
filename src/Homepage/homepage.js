@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Cookies from 'universal-cookie';
+import Cookies from 'js-cookie';
 
 import config from '../config';
 
@@ -9,9 +9,15 @@ import './homepage.css';
 
 var CryptoJS = require("crypto-js");
 
-const cookies = new Cookies();
-
 class HomePage extends Component {
+
+  componentDidMount() {
+    let checkLoginToken = Cookies.get('loginToken');
+    
+    if(checkLoginToken !== undefined) {
+      window.location = "http://localhost:3000/application";
+    }
+  }
 
   createAnAccount(){
 
@@ -80,16 +86,32 @@ class HomePage extends Component {
     })
 
     .then(data => {
+      let loginTokenCookie = data[0];
 
-      //  normal expire time will be a week with the value of 60*60*24*7
-      const expireTime = 60*60*24*7; // This is one minute
-      cookies.set('loginToken', data[0], {secure: true, maxAge: expireTime});
+      Cookies.set('loginToken', loginTokenCookie, { expires: 7, secure: true});
+      Cookies.set('account_name', account_name, { expires: 7, secure: true});
       window.alert('Account created. Enjoy!')
       
-      return <Redirect to='/application'/>
+      window.location = "http://localhost:3000/application";
     })
     
-    //.catch(error)
+    .catch(error => {
+      let userNameExistsError = 'insert into "whats_to_eat_user_table" ("account_name", "id", "user_email", "user_password", "username") values ($1, $2, $3, $4, $5) returning * - duplicate key value violates unique constraint "whats_to_eat_user_table_username_key"';
+
+      let userEmailExistsError = 'insert into "whats_to_eat_user_table" ("account_name", "id", "user_email", "user_password", "username") values ($1, $2, $3, $4, $5) returning * - duplicate key value violates unique constraint "whats_to_eat_user_table_user_email_key"';
+      
+      if(error.message === userNameExistsError) {
+        
+        document.getElementById('homePageErrorText').innerHTML = "That username is already in use. Please try another";
+        document.getElementById('userNameForm').value = "";
+
+      }else if(error.message === userEmailExistsError) {
+        document.getElementById('homePageErrorText').innerHTML = "That email is already in use. Please try another";
+        document.getElementById('userEmail').value = "";
+
+      }
+
+    })
 
     
   }
@@ -112,6 +134,10 @@ class HomePage extends Component {
                 <input className='loginFormInput' id='passwordForm' type='text' placeholder='Password'></input>
                 <input className='loginFormInput' id='repeatedPassForm' type='text' placeholder='Repeat Password'></input>
             </form>
+
+            <div className="homePageErrorContainer">
+              <p className="homePageErrorText" id="homePageErrorText"></p>
+            </div>
 
             <div className='userAccountButtons'>
                 <button className='createUserButton' onClick={() => this.createAnAccount()}>Create Account</button>
