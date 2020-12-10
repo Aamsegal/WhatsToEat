@@ -63,7 +63,7 @@ class Appnavbar extends Component {
                 
                 <div className="appNavbarRight">
                     {this.isLoggedIn()}
-                    <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('recipe')}>recipe Section</button>
+                    <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('recipe')}>Recipe Search</button>
                     <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Saved')}>Saved Recipes</button>
                     <button className="appNavbarNavButton" onClick={() => this.logOut()}>Log Out</button>
                 </div>

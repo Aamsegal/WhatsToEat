@@ -10,6 +10,8 @@ import RecipeSection from './RecipeSection/recipeSection';
 import SavedRecipes from './SavedRecipes/savedRecipes';
 import UserProfile from './UserProfile/userProfile';
 
+var cloneDeep = require('lodash.clonedeep');
+
 const app_id = process.env.REACT_APP_APP_ID;
 const app_key = process.env.REACT_APP_APP_KEY;
 const api_endpoint = process.env.REACT_APP_API_ENDPOINT;
@@ -24,6 +26,7 @@ class App extends Component {
 
   //  Checks login token on mount
   componentDidMount() {
+
     let loginToken = Cookies.get('loginToken');
 
     if(loginToken !== undefined) {
@@ -52,41 +55,40 @@ class App extends Component {
     })
 
     .then(userRecipes => {
+      let recipeAndExtra = userRecipes;
+      //this.setState({savedRecipes: userRecipes})
 
-      this.setState({savedRecipes: userRecipes})
+      //let recipeList = [...this.state.savedRecipes];
+      //let deepCopy = cloneDeep(recipeList);
 
-      let recipeList = [...this.state.savedRecipes];
-      console.log(recipeList, 'before for loop')
+      //recipeList.forEach(item => deepCopy.push(item));
 
-      for(let i=0; i < recipeList.length; i++){
+      /*
+      for(let x = 0; x < deepCopy.length; x++) {
+        let currentIngredient = deepCopy[x];
 
-        /*
-        let currentIngredients = this.getSavedIngredients(recipeList[i], i);
-        let currentAllergies = this.getSavedAllergies(recipeList[i], i);
-        */
-
-        //return new Promise(resolve => {
-          let currentIngredients = this.getSavedIngredients(recipeList[i], i);
-          //let currentAllergies = this.getSavedAllergies(recipeList[i], i);
-          //resolve(currentIngredients,);
-          console.log(currentIngredients,'ingredient call')
-        //})
+        deepCopy.push(currentIngredient);
+      }
+      */      
+      
+      for(let i=0; i < recipeAndExtra.length; i++){
         
-        /*
-        .then(currentIngredients => {
-                  console.log(currentIngredients,'currentIngredients')
-
-        })
-        */
+        let currentIngredients = this.getSavedIngredients(recipeAndExtra[i], i);
+        let currentAllergies = this.getSavedAllergies(recipeAndExtra[i], i);
+        
+        recipeAndExtra[i].ingredients = currentIngredients;
+        recipeAndExtra[i].allergies = currentAllergies;
       }
 
-      //console.log(currentIngredients)
+      this.setState({savedRecipes: recipeAndExtra});
+
     })
-    
+
   }
 
   //  Goes through each recipe and makes an api call for ingredients and allergy info
   getSavedIngredients(recipe, savedRecipeIndex) {
+
     let recipeId = recipe.id;      
     let ingredientArray = [];
 
@@ -108,17 +110,13 @@ class App extends Component {
 
     //  Adding the recipe array to teh 
     .then(ingredients => {
-      console.log(ingredients, 'Ingredient list')
 
       // Change the array of objects into just an array of ingredients
       for(let x=0; x < ingredients.length; x++) {
         ingredientArray.push(ingredients[x].ingredient)
       }
-      //console.log(ingredientArray, 'ingredient Array in get ingredients')
-      console.log(ingredientArray, 'ingredient arrays')
       return ingredientArray;      
     })
-    console.log(ingredientArray)
 
     return ingredientArray;
 
@@ -127,7 +125,9 @@ class App extends Component {
 
   //  Adds the allergy info the the recipes
   getSavedAllergies = (recipe, savedRecipeIndex) => {
+
     let recipeId = recipe.id;
+    let allergyArray = [];
 
     fetch(`${config.DATABASE_API_ENDPOINT}/api/allergyEndpoint/recipe/${recipeId}`, {
       method: 'GET',
@@ -145,17 +145,13 @@ class App extends Component {
     })
 
     .then(allergies => {
-      let allergyArray = [];
 
       // Change the array of objects into just an array of ingredients
       for(let x=0; x < allergies.length; x++) {
         allergyArray.push(allergies[x].allergy_info)
       }
-
-      //  Adds an object key of ingredients to the recipe
-      //FOR SOME REASON THIS SAVES OVER THE STATE
-      recipe.allergies = allergyArray;
     })
+    return allergyArray;
   }
 
   //  Makes api call to recipe database
@@ -401,6 +397,7 @@ class App extends Component {
           saveRecipeFunction={this.saveRecipe}
         />
 
+    
         <SavedRecipes 
           savedRecipes={this.state.savedRecipes}
           deleteRecipeFunction={this.deleteRecipe}/>

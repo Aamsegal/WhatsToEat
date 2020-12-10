@@ -43,7 +43,7 @@ class recipeFilter extends Component {
 
         for(let i = 0; i < ingredientList.length; i++) {
             ingredientHtml.push(
-                <div className="addedIngredient" id={`${ingredientList[i]}+${i}`}>
+                <div className="addedIngredient" id={`${ingredientList[i]}+${i}`} key={`${ingredientList[i]}+${i}`}>
                     <p>{ingredientList[i]}</p>
                     <button onClick={() => this.deleteIngredient(i)}>Delete Ingredient</button>
                 </div>
@@ -89,7 +89,7 @@ class recipeFilter extends Component {
 
         for(let i = 0; i < excludedList.length; i++) {
             excludedHtml.push(
-                <div className="excludedIngredient" id={`${excludedList[i]}+${i}`}>
+                <div className="excludedIngredient" id={`${excludedList[i]}+${i}`} key={`${excludedList[i]}+${i}`}>
                     <p>{excludedList[i]}</p>
                     <button onClick={() => this.deleteExcludedIngredients(i)}>Delete Ingredient</button>
                 </div>

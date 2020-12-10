@@ -4,49 +4,67 @@
 }
 
 @media screen and (min-width: 1280px) {
-    .savedrecipeComponent {
-        width: 70%;
+    .savedRecipeComponent {
+        width: 40%;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
     }
 
-    .savedrecipeContainer {
+    .savedRecipesContainer {
         text-align: left;
     }
 
-    .savedrecipe {
+    .singleSavedRecipeContainer {
+        border: 5px dotted hotpink;
         margin-top: 15px;
         margin-bottom: 15px;
-        
+    }
+
+    .savedRecipeLeftContainer, .savedRecipeRightContainer {
+        display: inline-block;
+    }
+
+    .savedRecipeLeftContainer {
+        vertical-align: top;
+        width: 40%;
+    }
+
+    .savedRecipeRightContainer {
+        vertical-align: top;
+        width: 60%;
     }
     
-    .savedrecipeImageContainer {
+    .savedRecipeImageContainer {
         width: 20;
         display: inline-block;
     }
 
-    .savedrecipeImage {
+    .savedRecipeImage {
         width: 200px;
         height: 200px;
     }
 
-    .savedrecipeDelete {
+    .savedRecipeListHeader {
+        margin: 0;
+    }
+
+    .savedRecipeDelete {
         margin-left: auto;
         margin-right: auto;
         display: block;
     }
 
-    .savedrecipeInfoContainer {
+    .savedRecipeInfoContainer {
         display: inline-block;
         width: 79%;
     }
 
-    .savedrecipeName {
+    .savedRecipeName {
         display: block;
     }
     
-    .savedrecipeDescription{
+    .savedRecipeDescription{
         display: block;
         width: 80%;
         text-align: left;
