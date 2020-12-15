@@ -10,11 +10,10 @@ import RecipeSection from './RecipeSection/recipeSection';
 import SavedRecipes from './SavedRecipes/savedRecipes';
 import UserProfile from './UserProfile/userProfile';
 
-var cloneDeep = require('lodash.clonedeep');
-
 const app_id = process.env.REACT_APP_APP_ID;
 const app_key = process.env.REACT_APP_APP_KEY;
 const api_endpoint = process.env.REACT_APP_API_ENDPOINT;
+const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
 
 class App extends Component {
 
@@ -38,7 +37,7 @@ class App extends Component {
   //  Uses login token param to grab recipes from database
   getSavedRecipes (loginToken) {
 
-    fetch(`${config.DATABASE_API_ENDPOINT}/api/recipeEndpoint/getRecipe/${loginToken}`, {
+    fetch(`${whats_to_eat_endpoint}/api/recipeEndpoint/getRecipe/${loginToken}`, {
       method: 'GET',
       header: {
         'content-type': 'application/json'
@@ -92,7 +91,7 @@ class App extends Component {
     let recipeId = recipe.id;      
     let ingredientArray = [];
 
-    fetch(`${config.DATABASE_API_ENDPOINT}/api/ingredientEndpoint/recipe/${recipeId}`, {
+    fetch(`${whats_to_eat_endpoint}/api/ingredientEndpoint/recipe/${recipeId}`, {
       method: 'GET',
       header: {
         'content-type': 'application/json'
@@ -129,7 +128,7 @@ class App extends Component {
     let recipeId = recipe.id;
     let allergyArray = [];
 
-    fetch(`${config.DATABASE_API_ENDPOINT}/api/allergyEndpoint/recipe/${recipeId}`, {
+    fetch(`${whats_to_eat_endpoint}/api/allergyEndpoint/recipe/${recipeId}`, {
       method: 'GET',
       header: {
         'content-type': 'application/json'
@@ -270,7 +269,7 @@ class App extends Component {
     }
 
     //  Api call to save recipe
-    fetch(`${config.DATABASE_API_ENDPOINT}/api/recipeEndpoint`, {
+    fetch(`${whats_to_eat_endpoint}/api/recipeEndpoint`, {
       method: 'POST',
       body: JSON.stringify(recipeInfo),
       headers: {
@@ -309,7 +308,7 @@ class App extends Component {
       let ingredient = ingredientList[i];
       let ingredientInfo = {recipe_id, ingredient};
 
-      fetch(`${config.DATABASE_API_ENDPOINT}/api/ingredientEndpoint`, {
+      fetch(`${whats_to_eat_endpoint}/api/ingredientEndpoint`, {
         method: 'POST',
         body: JSON.stringify(ingredientInfo),
         headers: {
@@ -335,7 +334,7 @@ class App extends Component {
       let allergy_info = allergyList[i];
       let allergyInfo = {recipe_id, allergy_info};
 
-      fetch(`${config.DATABASE_API_ENDPOINT}/api/allergyEndpoint`, {
+      fetch(`${whats_to_eat_endpoint}/api/allergyEndpoint`, {
         method: 'POST',
         body: JSON.stringify(allergyInfo),
         headers: {
@@ -360,7 +359,7 @@ class App extends Component {
 
     if(confirmDeleteRecipe == true) {
 
-      fetch(`${config.DATABASE_API_ENDPOINT}/api/recipeEndpoint/deleteRecipe/${recipe_Id}`, {
+      fetch(`${whats_to_eat_endpoint}/api/recipeEndpoint/deleteRecipe/${recipe_Id}`, {
         method: 'DELETE',
         header: {
           'content-type': 'application/json'

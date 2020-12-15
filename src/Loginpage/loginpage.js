@@ -6,6 +6,8 @@ import config from '../config';
 import './loginpage.css';
 
 var CryptoJS = require("crypto-js");
+const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
+
 
 class LoginPage extends Component {
 
@@ -24,7 +26,7 @@ class LoginPage extends Component {
             user_password = CryptoJS.MD5(user_password).toString();            
 
             //  Logging into account API Call
-            fetch(`${config.DATABASE_API_ENDPOINT}/api/userEndpoint/${username}/${user_password}`, {
+            fetch(`${whats_to_eat_endpoint}/api/userEndpoint/${username}/${user_password}`, {
                 method: 'GET',
                 headers: {
                 'content-type': 'application/json'

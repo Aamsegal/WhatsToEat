@@ -6,8 +6,9 @@ import config from '../config';
 
 import './homepage.css';
 
-
 var CryptoJS = require("crypto-js");
+
+const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
 
 class HomePage extends Component {
 
@@ -69,7 +70,7 @@ class HomePage extends Component {
     //  API Call_______________________________________________________________
     const newUserInfo = {account_name, username, user_password, user_email};
 
-    fetch(`${config.DATABASE_API_ENDPOINT}/api/userEndpoint`, {
+    fetch(`${whats_to_eat_endpoint}/api/userEndpoint`, {
       method: 'POST',
       body: JSON.stringify(newUserInfo),
       headers: {
