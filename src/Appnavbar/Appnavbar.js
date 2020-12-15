@@ -49,7 +49,7 @@ class Appnavbar extends Component {
             Cookies.remove('account_name');
             Cookies.remove('loginToken');
 
-            window.location = "http://localhost:3000"
+            window.location = "https://whats-to-eat.vercel.app"
         }
     }
 

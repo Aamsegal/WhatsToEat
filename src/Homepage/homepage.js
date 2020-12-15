@@ -16,7 +16,7 @@ class HomePage extends Component {
     let checkLoginToken = Cookies.get('loginToken');
     
     if(checkLoginToken !== undefined) {
-      window.location = "http://localhost:3000/application";
+      //window.location = "https://whats-to-eat.vercel.app/application";
     }
   }
 
@@ -93,7 +93,7 @@ class HomePage extends Component {
       Cookies.set('account_name', account_name, { expires: 7, secure: true});
       window.alert('Account created. Enjoy!')
       
-      window.location = "http://localhost:3000/application";
+      //window.location = "https://whats-to-eat.vercel.app/application";
     })
     
     .catch(error => {

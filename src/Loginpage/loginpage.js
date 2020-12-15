@@ -23,7 +23,8 @@ class LoginPage extends Component {
         }else {
             //  Hashing password and username___________________________________
             username = CryptoJS.MD5(username).toString();
-            user_password = CryptoJS.MD5(user_password).toString();            
+            user_password = CryptoJS.MD5(user_password).toString();   
+            console.log(whats_to_eat_endpoint)         
 
             //  Logging into account API Call
             fetch(`${whats_to_eat_endpoint}/api/userEndpoint/${username}/${user_password}`, {
@@ -60,7 +61,7 @@ class LoginPage extends Component {
                     alert(`You have logged into ${accountNameCookie}.`);
 
                     //  This redirects to this link.
-                    window.location = "http://localhost:3000/application";
+                    window.location = "https://whats-to-eat.vercel.app/application";
                 
                 }
             
