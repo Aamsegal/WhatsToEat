@@ -1,3 +1,7 @@
+.recipeSectionComponent {
+    background-color: #3aafa9;
+}
+
 @media screen and (min-width: 1280px) {
     .recipeSectionComponent {
         width: 90%;
@@ -5,8 +9,8 @@
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-
-        border: 1px solid black;
+        border-radius: 25px;
+        min-height: 600px;
     }
 
     .recipeSectionTitleContainer {
@@ -17,5 +21,6 @@
 
     .recipeSectionTitle {
         margin: 0;
+        color: #17242A;
     }
 }

@@ -1,3 +1,25 @@
+.recipeFilterHeader, .recipeFilterForm, .ingredientHeader {
+    color: #17242A;
+}
+
+.ingredientInclusionButton, .recipeSearchButton, .deleteIngredientButton {
+    background-color: #17242A;
+    border-radius: 20px;
+    height: 25px;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+}
+
+.ingredientInclusionButton:hover, .recipeSearchButton:hover, .deleteIngredientButton:hover {
+    background: #FFFFFF;
+    color: #17242A;
+}
+
+.ingredientInclusionButton:active, .recipeSearchButton:active , .deleteIngredientButton:active {
+    font-weight: bold;
+}
+
 @media screen and (min-width: 1280px) {
     .recipeFilterContainer {
         display: inline-block;
@@ -23,6 +45,20 @@
         display: flex;
     }
 
+    .ingredientInclusionButton {
+        width: 130px;
+    }
+
+    /*This if for the or text between the buttons*/
+    .buttonDivider {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .buttonDivider {
+        display: inline-block;
+    }
+
     .addedIngredients, .excludedIngredients {
         display: inline-block;
         align-items: stretch; /*Since the parent is flex, this element makes
@@ -41,8 +77,83 @@
         min-height: 100%;
     }
 
-    .recipeSearchButtonContainer {
-        margin-top: 20px;
+    .ingredientQueryText{
+        display: inline-block;
+        vertical-align: middle;
     }
+
+    .deleteIngredientButton {
+        vertical-align: middle;
+        margin-left: 5px;
+    }
+
+    .recipeSearchButtonContainer {
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .recipeSearchButton {
+        width: 120px;
+    }
+
+    /*Animations for hover over the ingredient form*/
+    .recipeFilterFoodForm {
+        position: relative;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .recipeFilterFoodForm:after,
+    .recipeFilterFoodForm:before {
+        --scale: 0;
+
+        position: absolute;
+        top: -.25rem;
+        transform: translateX(50%) translateY(-100%) scale(var(--scale));
+        transition: 100ms transform;
+        transform-origin: bottom left;
+    }
+
+    .recipeFilterFoodForm:before {
+        content: attr(data-tooltip);
+        color: #FFFFFF;
+        padding: .5rem;
+        border-radius: .5rem;
+        text-align: left;
+        width: max-content;
+        max-width: 100%;
+        background: #17242A;
+    }
+
+    .recipeFilterFoodForm:hover:before {
+        --scale: 1;
+    }
+
+    .includedIngredientHeader {
+        margin: 0;
+    }
+
+    .addedIngredient, .excludedIngredient {
+        border-bottom: 2px solid black;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: right;
+    }
+
+    .ingredientText, .ingredientX {
+        display: inline-block;
+    }
+
+    .ingredientText {
+        max-width: 75%;
+    }
+
+    .ingredientQueryText {
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+
 
 }

@@ -1,5 +1,9 @@
 .appNavbar{
-    background-color: rgb(170, 170, 170);
+    background-color: #3AAFA9;
+}
+
+.appNavbarTitle {
+    color: #FFFFFF;
 }
 
 .appNavbarLeft, .appNavbarRight {
@@ -25,7 +29,7 @@
     }
     
     .appNavbarTitle {
-        margin-left: 50px;
+        margin-left: 100px;
     }
 
     .appNavbarUsername, .appNavbarNavButton {
@@ -33,8 +37,30 @@
         margin-right: 10px;
     }
 
+    .appNavbarNavButton {
+        background-color: #17242A;
+        width: 120px;
+        height: 30px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+
+    .appNavbarNavButton:hover {
+        background: #FFFFFF;
+        color: #17242A;
+    }
+
+    .appNavbarNavButton:active {
+        font-weight: bold;
+    }
+
     .appNavbarUsername {
         margin-right: 100px;
+        font-weight: bold;
+        font-size: 18px;
+        color: #FFFFFF;
     }
     
 }

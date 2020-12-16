@@ -37,7 +37,7 @@ class Appnavbar extends Component {
             account_name = 'Guest'
         }
 
-        return <p className="appNavbarUsername">{account_name}</p>
+        return <h2 className="appNavbarUsername">{account_name}</h2>
     }
 
     //  Confirms the user wants to log out then resets the cookies and redirects to the home
@@ -49,7 +49,9 @@ class Appnavbar extends Component {
             Cookies.remove('account_name');
             Cookies.remove('loginToken');
 
-            window.location = "https://whats-to-eat.vercel.app"
+            //window.location = "https://whats-to-eat.vercel.app"
+
+            window.location = "http://localhost:3000"
         }
     }
 

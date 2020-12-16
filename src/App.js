@@ -158,6 +158,7 @@ class App extends Component {
 
     let apiURL = `${api_endpoint}app_id=${app_id}&app_key=${app_key}`;
     let foodQuery = `&q=`;
+    let excludeQuery = '';
 
     for(let i=0; i < foodParam.length; i++) {
       
@@ -172,7 +173,7 @@ class App extends Component {
     apiURL += foodQuery;
 
     if(excludeParam.length !== 0) {
-      
+            
       for(let i=0; i < excludeParam.length; i++) {
         let lowercaseExclude = excludeParam[i].toLowerCase();
 
@@ -190,7 +191,7 @@ class App extends Component {
       apiURL += `&health=${healthParams[i]}`
     }
 
-    apiURL += '&from=0&to=75'
+    apiURL += '&from=0&to=100'
 
     fetch(apiURL, {
       method: 'GET',

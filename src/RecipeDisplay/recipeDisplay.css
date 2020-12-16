@@ -1,9 +1,56 @@
+.recipeDisplayContainer p, .recipeDisplayContainer ul {
+    color: #f5f8f0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.searchedHeader {
+    color: #17242A;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.searchedRecipeImage {
+    border: 2px solid #17242A;
+}
+
+.recipeLink {
+    text-decoration: none;
+}
+
+.recipeLink:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.recipeLink:visited:hover {
+    color: #17242A;
+}
+
+.recipeDisplayButton {
+    background-color: #17242A;
+    border-radius: 20px;
+    height: 25px;
+    color: #FFFFFF;
+    outline: none;
+    border: none;
+}
+
+.recipeDisplayButton:hover {
+    background: #FFFFFF;
+    color: #17242A;
+}
+
+.recipeDisplayButton:active {
+    font-weight: bold;
+}
+
 @media screen and (min-width: 1280px) {
     .recipeDisplayContainer {
         display: inline-block;
         text-align: center;
         vertical-align: top;
-        width: 74.75%;
+        width: 74.50%;
     }
 
     .emptyPropsChecker {
@@ -25,6 +72,10 @@
         margin-left: auto;
     }
 
+    .searchedRecipeImage {
+        border-radius: 10%;
+    }
+
     .nutritionSection {
         text-align: left;
     }
@@ -36,7 +87,7 @@
     .ingredientList {
         display: inline-block;
         vertical-align: top;
-        width: 45%;
+        width: 40%;
     }
 
     .ingredientUl {
@@ -47,7 +98,7 @@
 
     .allergyContainer {
         display: inline-block;
-        width: 15%;
+        width: 20%;
         vertical-align: top;
         text-align: center;
     }
@@ -57,10 +108,6 @@
         margin-bottom: 5px;
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .recipeLink {
-        font-size: 20px;
     }
 
     .saveRecipeButtonContainer, .extraDetailContainer {
@@ -75,7 +122,7 @@
         margin-bottom: 50px;
     }
 
-    .nextRecipeButton, .saveRecipeButton {
+    .recipeDisplayButton {
         border-radius: 5px;
         width: 150px;
         font-size: 15px;

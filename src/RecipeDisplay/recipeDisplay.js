@@ -26,8 +26,8 @@ class recipeDisplay extends Component {
                 <div className="displayedRecipe">
 
                     <div className="baseRecipeInfo">
-                        <h3 className="displayRecipeName">{currentRecipeInfo.label}</h3>
-                        <img src={currentRecipeInfo.image} alt={`${currentRecipeInfo.label} recipe`}/>
+                        <h3 className="displayRecipeName searchedHeader">{currentRecipeInfo.label}</h3>
+                        <img src={currentRecipeInfo.image} alt={`${currentRecipeInfo.label} recipe`} className="searchedRecipeImage"/>
                     </div>
 
                     <div className="nutritionSection">
@@ -46,7 +46,7 @@ class recipeDisplay extends Component {
     }
     
     renderAllergies() {     
-        let allergiesHTML = [<h3>Allergy Info</h3>];
+        let allergiesHTML = [<h3 className="searchedHeader">Allergy Info</h3>];
 
         if(this.props.currentRecipeProp === undefined) {
 
@@ -67,7 +67,7 @@ class recipeDisplay extends Component {
     }
 
     renderIngredients() {
-        let ingredientHTML = [<h3>Ingredients</h3>];
+        let ingredientHTML = [<h3 className="searchedHeader">Ingredients</h3>];
 
         if(this.props.currentRecipeProp === undefined) {
             return
@@ -95,26 +95,29 @@ class recipeDisplay extends Component {
             let recipeInfo = this.props.currentRecipeProp.recipe;
 
             extraDetailHTML.push(
-                <a className="recipeLink" href={recipeInfo.url} target="_blank" rel="noreferrer">Cooking Details!</a>
+                <button className="recipeDisplayButton">
+                    <a className="recipeLink" href={recipeInfo.url} target="_blank" rel="noreferrer">Cooking Details!</a>
+                </button>
             )
         }
 
         return extraDetailHTML;
     }
 
-    renderNextButton() {
-        if(this.props.currentRecipeProp === undefined) {
-            return
-        }else {
-            return <button className="nextRecipeButton" onClick={() => this.props.nextRecipeFunction()}>Next Recipe</button>
-        }
-    }
-
     renderSaveRecipeButton() {
         if(this.props.currentRecipeProp === undefined) {
             return
         }else {
-            return <button className="saveRecipeButton" onClick={() => this.props.saveRecipeFunction()}>Save!</button>
+            return <button className="saveRecipeButton recipeDisplayButton" onClick={() => this.props.saveRecipeFunction()}>Save!</button>
+        }
+    }
+
+
+    renderNextButton() {
+        if(this.props.currentRecipeProp === undefined) {
+            return
+        }else {
+            return <button className="nextRecipeButton recipeDisplayButton" onClick={() => this.props.nextRecipeFunction()}>Next Recipe</button>
         }
     }
 

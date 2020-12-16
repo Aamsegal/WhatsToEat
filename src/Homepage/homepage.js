@@ -17,6 +17,7 @@ class HomePage extends Component {
     
     if(checkLoginToken !== undefined) {
       //window.location = "https://whats-to-eat.vercel.app/application";
+      window.location = "http://localhost:3000/application"
     }
   }
 
@@ -94,6 +95,7 @@ class HomePage extends Component {
       window.alert('Account created. Enjoy!')
       
       //window.location = "https://whats-to-eat.vercel.app/application";
+      window.location = "http://localhost:3000/application";
     })
     
     .catch(error => {
@@ -147,8 +149,12 @@ class HomePage extends Component {
 
             <div className='noAccountContainer'>
                 <h3>Don't want to create an account?</h3>
-                <button className='findArecipeButton'><Link to='/application'>Start searching!</Link></button>
+                <button className='findRecipeButton'><Link to='/application'>Start searching!</Link></button>
             </div>
+        </div>
+
+        <div className="instructionContainer">
+          <h1>Content here</h1>
         </div>
 
       </main>

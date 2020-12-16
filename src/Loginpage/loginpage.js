@@ -61,8 +61,8 @@ class LoginPage extends Component {
                     alert(`You have logged into ${accountNameCookie}.`);
 
                     //  This redirects to this link.
-                    window.location = "https://whats-to-eat.vercel.app/application";
-                
+                    //window.location = "https://whats-to-eat.vercel.app/application";
+                    window.location = "http://localhost:3000/application";
                 }
             
             })

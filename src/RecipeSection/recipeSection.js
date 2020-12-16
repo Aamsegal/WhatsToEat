@@ -12,7 +12,7 @@ class recipeSection extends Component {
             <div className="recipeSectionComponent" id="recipeSectionComponent">
                 
                 <div className="recipeSectionTitleContainer">
-                    <h1 className="recipeSectionTitle">Search for recipes!</h1>
+                    <h1 className="recipeSectionTitle">Start Searching</h1>
                 </div>
                 
                 <RecipeFilter recipeApiSearch={this.props.recipeApiSearch}/>

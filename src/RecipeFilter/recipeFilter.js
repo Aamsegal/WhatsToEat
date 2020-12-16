@@ -44,8 +44,14 @@ class recipeFilter extends Component {
         for(let i = 0; i < ingredientList.length; i++) {
             ingredientHtml.push(
                 <div className="addedIngredient" id={`${ingredientList[i]}+${i}`} key={`${ingredientList[i]}+${i}`}>
-                    <p>{ingredientList[i]}</p>
-                    <button onClick={() => this.deleteIngredient(i)}>Delete Ingredient</button>
+                    
+                    <div className="ingredientText">
+                        <p className="ingredientQueryText">{ingredientList[i]}</p>
+                    </div>
+
+                    <div className="ingredientX">
+                        <button onClick={() => this.deleteIngredient(i)} className="deleteIngredientButton">X</button>
+                    </div>
                 </div>
                 
                 
@@ -90,8 +96,15 @@ class recipeFilter extends Component {
         for(let i = 0; i < excludedList.length; i++) {
             excludedHtml.push(
                 <div className="excludedIngredient" id={`${excludedList[i]}+${i}`} key={`${excludedList[i]}+${i}`}>
-                    <p>{excludedList[i]}</p>
-                    <button onClick={() => this.deleteExcludedIngredients(i)}>Delete Ingredient</button>
+                    
+                    <div className="ingredientText">
+                        <p className="ingredientQueryText">{excludedList[i]}</p>
+                    </div>
+                    
+                    <div className="ingredientX">
+                        <button onClick={() => this.deleteExcludedIngredients(i)} className="deleteIngredientButton">X</button>
+                    </div>
+
                 </div>
                 
                 
@@ -159,7 +172,7 @@ class recipeFilter extends Component {
 
                 <div className='recipeFilterFormContainer'>
 
-                    <h3>Dietary Restrictions</h3>
+                    <h2 className="recipeFilterHeader">Dietary Restrictions</h2>
 
                     <form className='recipeFilterForm'>
 
@@ -207,28 +220,39 @@ class recipeFilter extends Component {
 
                     <div className='recipeFilterFoodContainer'>
 
-                        <h3>Ingredients</h3>
+                        <h3 className="ingredientHeader">Ingredients</h3>
 
-                        <form className='recipeFilterFoodForm'>
+                        <form className='recipeFilterFoodForm' 
+                        data-tooltip="Type an ingredient and either click the add or exclude button."
+                        >
 
-                            <input type="text" id="ingredients" name="ingredients" placeholder="chicken, brocolli, pasta"/>
+                            <input 
+                                type="text" id="ingredients" className="ingredientFormBox" 
+                                placeholder="chicken, broccoli, pasta"
+                            />
                             
                         </form>
                         
-                        <button onClick={() => this.addIngredient()}>Add Ingredient</button>
-                        <button onClick={() => this.excludeIngredient()}>Exclude Ingredient</button>
+
+                        <div className="ingredientInclusionContainer">
+                            <button onClick={() => this.addIngredient()} className="ingredientInclusionButton">Add Ingredient</button>
+                            <p className="buttonDivider">or</p>
+                            <button onClick={() => this.excludeIngredient()} className="ingredientInclusionButton">Exclude Ingredient</button>
+                        </div>
+
+                        
                     
                     </div>
                 </div>
 
                 <div className="ingredientRequirements">
                     <div className="addedIngredients">
-                        <h3>Included</h3>
+                        <h3 className="includedIngredientHeader">Included</h3>
                         {this.renderAllIngredients()}
                     </div>
 
                     <div className="excludedIngredients">
-                        <h3>Excluded</h3>
+                        <h3 className="includedIngredientHeader">Excluded</h3>
                         {this.renderExcludedIngredients()}
                     </div>
                 </div>
