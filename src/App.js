@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import config from './config';
+import './app.css'
 
 //Placeholder stuff
 
@@ -9,6 +9,7 @@ import AppNavbar from './Appnavbar/Appnavbar';
 import RecipeSection from './RecipeSection/recipeSection';
 import SavedRecipes from './SavedRecipes/savedRecipes';
 import UserProfile from './UserProfile/userProfile';
+
 
 const app_id = process.env.REACT_APP_APP_ID;
 const app_key = process.env.REACT_APP_APP_KEY;
@@ -79,7 +80,14 @@ class App extends Component {
         recipeAndExtra[i].allergies = currentAllergies;
       }
 
-      this.setState({savedRecipes: recipeAndExtra});
+      return recipeAndExtra;
+
+    })
+
+    .then(savedRecipesResponse => {
+
+      console.log(savedRecipesResponse)
+      this.setState({savedRecipes: savedRecipesResponse});
 
     })
 
@@ -154,7 +162,7 @@ class App extends Component {
   }
 
   //  Makes api call to recipe database
-  recipeApiSearch = (foodParam,excludeParam,dietParam,healthParams) => {
+  recipeApiSearch = (foodParam,excludeParam,dietParam,healthParams,mealType) => {
 
     let apiURL = `${api_endpoint}app_id=${app_id}&app_key=${app_key}`;
     let foodQuery = `&q=`;
@@ -191,6 +199,14 @@ class App extends Component {
       apiURL += `&health=${healthParams[i]}`
     }
 
+    /*
+    if(mealType !== '') {
+      apiURL += `&mealType=${mealType}`
+    }
+
+    //This function can be implemented if I purchase the better version of edamam api
+    */
+
     apiURL += '&from=0&to=100'
 
     fetch(apiURL, {
@@ -210,6 +226,14 @@ class App extends Component {
 
     .then(recipes => {
       this.setState({recipes: recipes.hits})
+      let windowWidth = window.innerWidth;
+      
+      if(windowWidth < 1080) {
+        document.getElementById('recipeFilterContainer').style.display = 'none';
+        document.getElementById('recipeDisplayContainer').style.display = 'block';
+
+        window.scrollTo(0,0);
+      }
     })
     
   }
@@ -236,6 +260,8 @@ class App extends Component {
       //adds the current recipe to the past recipe list and saved the past state with the new array
       pastRecipes.push(currentrecipe);
       this.setState({pastRecipes: pastRecipes})
+
+      window.scrollTo(0,0);
     }
   }
 
@@ -281,6 +307,12 @@ class App extends Component {
     .then(res => {
       if(!res.ok) {
         return res.json().then(e => Promise.reject(e))
+      }else {
+        document.getElementById('savedSuccessful').style.display = "block";
+
+        setTimeout(() => 
+          {document.getElementById('savedSuccessful').style.display = "none";}, 3000
+        )
       }
       return res.json()
     })
@@ -298,7 +330,7 @@ class App extends Component {
     })
 
     .then(loginToken => {
-      this.getSavedRecipes(loginToken);
+      this.getSavedRecipes(loginToken)
     })
   }
 
@@ -404,6 +436,9 @@ class App extends Component {
 
         <UserProfile />
 
+        <footer className="footerSection">
+          <div className="edamamIcon" id="edamam-badge" data-color="white"></div>
+        </footer>
       </div>
       
     )

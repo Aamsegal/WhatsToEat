@@ -13,6 +13,19 @@ code {
 }
 
 .application {
+  position: absolute;
   background-color: #AAAAAA;
-  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 1080px) {
+  .application{
+    min-height: 650px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .application{
+    min-height: 900px;
+  }
 }

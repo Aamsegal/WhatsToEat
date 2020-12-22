@@ -1,11 +1,5 @@
-.recipeDisplayContainer p, .recipeDisplayContainer ul {
-    color: #f5f8f0;
-    font-size: 18px;
-    font-weight: bold;
-}
-
 .searchedHeader {
-    color: #17242A;
+    color: black;
     font-size: 28px;
     font-weight: bold;
 }
@@ -14,22 +8,8 @@
     border: 2px solid #17242A;
 }
 
-.recipeLink {
-    text-decoration: none;
-}
-
-.recipeLink:visited {
-    color: #FFFFFF;
-    text-decoration: none;
-}
-
-.recipeLink:visited:hover {
-    color: #17242A;
-}
-
 .recipeDisplayButton {
     background-color: #17242A;
-    border-radius: 20px;
     height: 25px;
     color: #FFFFFF;
     outline: none;
@@ -39,18 +19,165 @@
 .recipeDisplayButton:hover {
     background: #FFFFFF;
     color: #17242A;
+    
 }
 
 .recipeDisplayButton:active {
     font-weight: bold;
+    box-shadow: 3px 3px;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (max-width: 1080px) {
+    .recipeDisplayContainer {
+        display: none;
+        text-align: center;
+        vertical-align: top;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+    }
+
+    .recipeDisplayContainer p, .recipeDisplayContainer ul {
+        color: #f5f8f0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .recipeDisplayMobileTransitionContainer{
+        display: block;
+        position: fixed;
+        top: 50%;
+        left: 1%;
+    }
+
+    .recipeDisplayContainerCenter {
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 20px;
+        width: 100%;
+    }
+
+    .recipeInfoContainer {
+        background: #31948f;
+        border-radius: 20px;
+        box-shadow: 5px 8px #287975;
+    }
+
+    .searchedHeader {
+        color: black;
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 7px;
+        margin-bottom: 14px;
+    }
+
+    .searchedRecipeImage {
+        width: 250px;
+        border-radius: 10%;
+    }
+
+    .emptyPropsChecker {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .baseRecipeInfoContainer {
+        display: block;
+        text-align: left;
+        width: 40%;
+    }
+
+    .displayedRecipe {
+        text-align: center;
+        width: 300px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .nutritionSection {
+        text-align: center;
+    }
+
+    .nutritionSection p{
+        margin: 0;
+    }
+
+    .ingredientList {
+        display: block;
+        width: 100%;
+    }
+
+    .ingredientUl {
+        list-style: square;
+        text-align: left;
+        
+    }
+
+    .allergyContainer {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        text-align: center;
+    }
+
+    .allergyContainer p {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .saveRecipeButtonContainer, .extraDetailContainer {
+        display: inline-block;
+        width: 50%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .nextRecipeButtonContainer {
+        margin-bottom: 50px;
+        padding-bottom: 25px;
+    }
+
+    .recipeDisplayButton {
+        border-radius: 20px;
+        width: 150px;
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .recipeDisplayContainer p, .recipeDisplayContainer ul {
+        color: #f5f8f0;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
     .recipeDisplayContainer {
         display: inline-block;
         text-align: center;
         vertical-align: top;
-        width: 74.50%;
+        width: 70%;
+    }
+
+    .recipeDisplayContainerCenter {
+        margin-left: auto;
+        margin-right: auto;
+        width: 95%;
+    }
+
+    .recipeInfoContainer {
+        padding-left: 10px;
+        padding-right: 20px;
+        background: #31948f;
+        border-radius: 20px;
+        box-shadow: 5px 8px #287975;
+        margin-top: 20px;
+    }
+
+    .searchedRecipeImage {
+        width: 250px;
     }
 
     .emptyPropsChecker {
@@ -91,7 +218,6 @@
     }
 
     .ingredientUl {
-        padding-left: 20px;
         list-style: square;
         text-align: left;
     }
@@ -120,10 +246,11 @@
     .nextRecipeButtonContainer {
         margin-top: 50px;
         margin-bottom: 50px;
+        padding-bottom: 25px;
     }
 
     .recipeDisplayButton {
-        border-radius: 5px;
+        border-radius: 20px;
         width: 150px;
         font-size: 15px;
     }

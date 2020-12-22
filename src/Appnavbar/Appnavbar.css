@@ -6,16 +6,147 @@
     color: #FFFFFF;
 }
 
-.appNavbarLeft, .appNavbarRight {
-    display: inline-block;
-}
-
 .link-To {
     color: inherit;
     text-decoration: inherit; 
 }
 
-@media screen and (min-width: 1280px) {
+.appNavbarNavButton:hover {
+    background: #FFFFFF;
+    color: #17242A;
+}
+
+.appNavbarNavButton:active {
+    font-weight: bold;
+    box-shadow: 3px 3px;
+}
+
+/*Css for mobile*/
+@media screen and (max-width: 1080px) {
+    .appNavbar{
+        border-bottom: 2px solid white;
+    }
+
+    .appNavbarButtonContainer{
+        display: none;
+    }
+
+    .appNavbarButtonContainerMobile{
+        display: block;
+    }
+
+
+    .appNavbar {
+        position: fixed;
+        width: 100%;
+    }
+
+    .appNavbarLeft {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .appNavbarTitle {
+        margin-top: 5px;
+        margin-bottom: 0;
+        border-bottom: 2px solid black;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .appNavbarRight {
+        width: 100%;
+    }
+    
+    .appNavbarRight {
+        text-align: center;
+    }
+
+    .appNavbarUsernameContainer {
+        display:inline-block;
+        width:85%;
+    }
+    
+    .appNavbarUsername {
+        margin-top: 0;
+    }
+
+    .appNavbarButtonContainerMobile{
+        display:inline-block;
+    }
+
+    .appNavbarBurgerIcon {
+            display: inline-block;
+    }
+
+    .appNavbarBurgerMenu {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 150px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: #22252a94; /* Black w/ opacity */
+    }
+
+    .appNavbarBurgerMenuButtonContainer{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background: #3AAFA9;
+        border-radius: 20px;
+        height: 310px;
+        padding-top: 1px;
+    }
+
+    .burgerMenuIcon{
+        width: 25px;
+    }
+    
+    .appNavbarNavButton {
+        background-color: #17242A;
+        width: 160px;
+        height: 50px;
+        border-radius: 20px;
+        font-size: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 40px;
+
+    }
+
+    .appNavbarUsername {
+        font-weight: bold;
+        font-size: 18px;
+        color: #FFFFFF;
+    }
+    
+}
+
+@media screen and (min-width: 1080px) {
+    .appNavbarButtonContainer{
+        display:inline-block;
+    }
+
+    .appNavbarBurgerIcon, .appNavbarBurgerMenu{
+        display: none;
+    }
+
+    .appNavbarLeft, .appNavbarRight {
+        display: inline-block;
+    }
+
     .appNavbarLeft {
         width: 35%;
     }
@@ -32,7 +163,7 @@
         margin-left: 100px;
     }
 
-    .appNavbarUsername, .appNavbarNavButton {
+    .appNavbarUsernameContainer, .appNavbarNavButton {
         display: inline-block;
         margin-right: 10px;
     }
@@ -45,15 +176,6 @@
         color: #FFFFFF;
         outline: none;
         border: none;
-    }
-
-    .appNavbarNavButton:hover {
-        background: #FFFFFF;
-        color: #17242A;
-    }
-
-    .appNavbarNavButton:active {
-        font-weight: bold;
     }
 
     .appNavbarUsername {

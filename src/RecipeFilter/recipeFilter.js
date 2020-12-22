@@ -155,6 +155,7 @@ class recipeFilter extends Component {
         
         
         let ingredientList = this.state.ingredients;
+        //let mealType = document.getElementById('recipeFilterMealDropdown').value;
 
         if (ingredientList.length === 0) {
             alert('Please provide at least 1 ingredient.');
@@ -163,103 +164,138 @@ class recipeFilter extends Component {
 
         let excludedIngredientList = this.state.excludedIngredients;
 
-        this.props.recipeApiSearch(ingredientList,excludedIngredientList,selectedDiets,selectedHealth);
+        this.props.recipeApiSearch(ingredientList,excludedIngredientList,selectedDiets,selectedHealth /*,mealType*/);
     }
+
+    displayMobileRecipeDisplay() {
+        document.getElementById('recipeFilterContainer').style.display = 'none';
+        document.getElementById('recipeDisplayContainer').style.display = 'block';
+
+        //window.scrollTo(0,0);
+    }
+
+
 
     render() {
         return (
-            <div className='recipeFilterContainer'>
+            <div className='recipeFilterContainer' id="recipeFilterContainer">
 
-                <div className='recipeFilterFormContainer'>
+                <div className='recipeFilterMobileTransitionContainer'>
+                    <button className="recipeSectionTransitionButton" onClick={() => this.displayMobileRecipeDisplay()}>{'>'}</button>
+                </div>
 
-                    <h2 className="recipeFilterHeader">Dietary Restrictions</h2>
+                <div className="recipeFilterContainerCenter">
 
-                    <form className='recipeFilterForm'>
+                    <div className='recipeFilterFormContainer'>
 
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="diet1" name="diet1" value="high-protein" />
-                            <label htmlFor="diet1">High-Protien</label>
-                        </div>
-                        
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="diet2" name="diet2" value="low-carb" />
-                            <label htmlFor="diet2">Low-Carb</label>
-                        </div>
-                        
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="diet3" name="diet3" value="low-fat" />
-                            <label htmlFor="diet1">Low-Fat</label>
-                        </div>
-                        
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="health1" name="health1" value="vegan" />
-                            <label htmlFor="health1">Vegan</label>
-                        </div>
-                        
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="health2" name="health2" value="vegetarian" />
-                            <label htmlFor="health2">Vegetarian</label> 
-                        </div>
-                     
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="health3" name="health3" value="sugar-conscious" />
-                            <label htmlFor="health3">Sugar conscious</label>
-                        </div>
-                        
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="health4" name="health4" value="peanut-free" />
-                            <label htmlFor="health4">Peanut free</label>
-                        </div>
-                        
-                        <div className="checkboxContainer">
-                            <input type="checkbox" id="health5" name="health5" value="tree-nut-free" />
-                            <label htmlFor="health5">Tree nut free</label>
-                        </div>
-                        
-                    </form>
+                        <h2 className="recipeFilterHeader">Dietary Restrictions</h2>
 
-                    <div className='recipeFilterFoodContainer'>
+                        <div className='recipeFilterForm' id="recipeFilterForm">
 
-                        <h3 className="ingredientHeader">Ingredients</h3>
-
-                        <form className='recipeFilterFoodForm' 
-                        data-tooltip="Type an ingredient and either click the add or exclude button."
-                        >
-
-                            <input 
-                                type="text" id="ingredients" className="ingredientFormBox" 
-                                placeholder="chicken, broccoli, pasta"
-                            />
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="diet1" name="diet1" value="high-protein" />
+                                <label htmlFor="diet1">High-Protien</label>
+                            </div>
                             
-                        </form>
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="diet2" name="diet2" value="low-carb" />
+                                <label htmlFor="diet2">Low-Carb</label>
+                            </div>
+                            
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="diet3" name="diet3" value="low-fat" />
+                                <label htmlFor="diet1">Low-Fat</label>
+                            </div>
+                            
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="health1" name="health1" value="vegan" />
+                                <label htmlFor="health1">Vegan</label>
+                            </div>
+                            
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="health2" name="health2" value="vegetarian" />
+                                <label htmlFor="health2">Vegetarian</label> 
+                            </div>
                         
-
-                        <div className="ingredientInclusionContainer">
-                            <button onClick={() => this.addIngredient()} className="ingredientInclusionButton">Add Ingredient</button>
-                            <p className="buttonDivider">or</p>
-                            <button onClick={() => this.excludeIngredient()} className="ingredientInclusionButton">Exclude Ingredient</button>
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="health3" name="health3" value="sugar-conscious" />
+                                <label htmlFor="health3">Sugar conscious</label>
+                            </div>
+                            
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="health4" name="health4" value="peanut-free" />
+                                <label htmlFor="health4">Peanut free</label>
+                            </div>
+                            
+                            <div className="checkboxContainer">
+                                <input type="checkbox" id="health5" name="health5" value="tree-nut-free" />
+                                <label htmlFor="health5">Tree nut free</label>
+                            </div>
+                            
                         </div>
 
+                        {/*The code below is for if and when I upgrade my plan with
+                        the food api. */}
+                        {/* 
+                            <div className="recipeFilterMealType">
+                            <h2 className="recipeFilterMealHeader">Meal Type</h2>
+                            <form className="recipeFilterMealForm">
+                                <select className="recipeFilterMealDropdown" id="recipeFilterMealDropdown">
+                                    <option value=''>----</option>
+                                    <option value="snack">Snack</option>
+                                    <option value="breakfast">Breakfast</option>
+                                    <option value="lunch">Lunch</option>
+                                    <option value="dinner">Dinner</option>
+                                </select>
+                            </form>
+                            </div>
+                        */}
                         
-                    
-                    </div>
-                </div>
 
-                <div className="ingredientRequirements">
-                    <div className="addedIngredients">
-                        <h3 className="includedIngredientHeader">Included</h3>
-                        {this.renderAllIngredients()}
+                        <div className='recipeFilterFoodContainer'>
+
+                            <h2 className="ingredientHeader">Ingredients</h2>
+                            <div className='recipeFilterFoodForm' id="recipeFilterFoodForm"
+                            data-tooltip="Type an ingredient and either click the add or exclude button."
+                            >
+
+                                <input 
+                                    type="text" id="ingredients" className="ingredientFormBox" 
+                                    placeholder="chicken, broccoli, pasta"
+                                />
+
+                            </div>
+                            
+
+                            <div className="ingredientInclusionContainer">
+                                <button onClick={() => this.addIngredient()} className="ingredientInclusionButton">Add</button>
+                                <p className="buttonDivider">or</p>
+                                <button onClick={() => this.excludeIngredient()} className="ingredientInclusionButton">Exclude</button>
+                            </div>
+
+                            
+                        
+                        </div>
                     </div>
 
-                    <div className="excludedIngredients">
-                        <h3 className="includedIngredientHeader">Excluded</h3>
-                        {this.renderExcludedIngredients()}
+                    <div className="ingredientRequirements">
+                        <div className="addedIngredients">
+                            <h3 className="includedIngredientHeader">Included</h3>
+                            {this.renderAllIngredients()}
+                        </div>
+
+                        <div className="excludedIngredients">
+                            <h3 className="includedIngredientHeader">Excluded</h3>
+                            {this.renderExcludedIngredients()}
+                        </div>
                     </div>
-                </div>
+                
                 
 
-                <div className="recipeSearchButtonContainer">
-                    <button className="recipeSearchButton" onClick={() => this.startSearching()}>Start Searching</button>
+                    <div className="recipeSearchButtonContainer">
+                        <button className="recipeSearchButton" onClick={() => this.startSearching()}>Start Searching</button>
+                    </div>
+
                 </div>
             </div>
             

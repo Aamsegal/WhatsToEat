@@ -1,16 +1,163 @@
-.LoginPageHeaderContainer{
-    text-align: center;
-    background-color: rgb(170, 170, 170);
-}
-  
-.userLoginContainer{
-    text-align: center;
+.LoginPage {
+    background-color: #AAAAAA;
+    min-height: 100vh;
 }
 
-.loginFormInput{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
+.loginPageHeader {
+    margin: 0;
+}
+
+@media screen and (max-width: 1080px) {
+    .LoginPageHeaderContainer{
+        text-align: center;
+        background-color: #3AAFA9;
+        height: 100px;
+        vertical-align: middle;
+    }
+
+    .loginPageHeader {
+        margin: 0;
+        padding-top: 20px;
+        font-size: 45px;
+        color: #ffffff;
+    }
+
+    .loginPageHeader:hover {
+        text-shadow: 3px 3px black;
+    }
+    
+    .userLoginContainer{
+        text-align: center;
+    }
+
+    .userLoginHeader{
+        padding-top: 20px;
+        font-size: 30px;
+        margin-bottom: 0;
+    }
+
+    .userLoginContainer {
+        width: 90%;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #3AAFA9;
+        text-align: center;
+        border-radius: 20px;
+        box-shadow: 10px 12px #287975;
+    }
+
+    .loginForm{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .loginFormInput{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        width: 50%;
+        font-size: 20px;
+    }
+
+    .loginButton{
+        margin-bottom: 30px;
+        background-color: #17242A;
+        width: 140px;
+        height: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+
+    .loginButton:hover {
+        background: #FFFFFF;
+        color: #17242A;
+    }
+
+    .loginButton:active {
+        font-weight: bold;
+        box-shadow: 3px 3px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .LoginPageHeaderContainer{
+        text-align: center;
+        background-color: #3AAFA9;
+        height: 100px;
+        vertical-align: middle;
+    }
+
+    .loginPageHeader {
+        margin: 0;
+        padding-top: 20px;
+        font-size: 45px;
+        color: #ffffff;
+    }
+
+    .loginPageHeader:hover {
+        text-shadow: 3px 3px black;
+    }
+    
+    .userLoginContainer{
+        text-align: center;
+    }
+
+    .userLoginHeader{
+        padding-top: 20px;
+        margin-bottom: 0;
+    }
+
+    .userLoginContainer {
+        width: 40%;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #3AAFA9;
+        text-align: center;
+        border-radius: 20px;
+        box-shadow: 10px 12px #287975;
+    }
+
+    .loginForm{
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .loginFormInput{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .loginButton{
+        margin-bottom: 30px;
+        background-color: #17242A;
+        width: 140px;
+        height: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+
+    .loginButton:hover {
+        background: #FFFFFF;
+        color: #17242A;
+    }
+
+    .loginButton:active {
+        font-weight: bold;
+        box-shadow: 3px 3px;
+    }
 }

@@ -1,0 +1,31 @@
+.edamamIcon {
+    margin-left: 5%;
+}
+
+@media screen and (max-width: 1080px) {
+    .footerSection {
+        width: 100%;
+        background-color: #17242A;
+        padding-top: 5px;
+        padding-bottom: 2.5px;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .footerSection img{
+        height: 26.4px;
+        width: 132px;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .footerSection {
+        width: 100%;
+        background-color: #17242A;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        position: fixed;
+        bottom: 0;
+    }
+    
+}

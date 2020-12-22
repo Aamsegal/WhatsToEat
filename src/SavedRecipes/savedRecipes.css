@@ -3,9 +3,12 @@
     background-color: cornflowerblue;
 }
 
-@media screen and (min-width: 1280px) {
+.savedIngredientLI, .savedRecipeLeftContainer p, .savedAllergiesLI {
+    color: #FFFFFF;
+}
+@media screen and (max-width: 1080px) {
     .savedRecipeComponent {
-        width: 40%;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
         text-align: center;
@@ -13,10 +16,26 @@
 
     .savedRecipesContainer {
         text-align: left;
+        margin-bottom: 150px;
     }
 
     .singleSavedRecipeContainer {
-        border: 5px dotted hotpink;
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        
+    }
+
+    .singleSavedRecipeCenter {
+        margin-left: 15px;
+        margin-right: 15px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+
+        background: #31948f;
+        border-radius: 20px;
+        box-shadow: 5px 8px #287975;
         margin-top: 15px;
         margin-bottom: 15px;
     }
@@ -28,6 +47,11 @@
     .savedRecipeLeftContainer {
         vertical-align: top;
         width: 40%;
+    }
+
+    .savedRecipeLeftContainer p {
+        margin-top: 7.5px;
+        margin-bottom: 7.5px;
     }
 
     .savedRecipeRightContainer {
@@ -43,6 +67,8 @@
     .savedRecipeImage {
         width: 200px;
         height: 200px;
+        border-radius: 20px;
+        border: 2px solid #17242A;
     }
 
     .savedRecipeListHeader {
@@ -53,6 +79,10 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+    }
+
+    .deleteSavedContainer{
+        padding-bottom: 20px;
     }
 
     .savedRecipeInfoContainer {
@@ -70,5 +100,144 @@
         text-align: left;
         margin-left: auto;
         margin-right: auto;
+    }
+    
+    .savedRecipeButtons {
+        background-color: #17242A;
+        height: 25px;
+        border-radius: 20px;
+        width: 150px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+    
+    .savedRecipeButtons:hover {
+        background: #FFFFFF;
+        color: #17242A;
+        
+    }
+    
+    .savedRecipeButtons:active {
+        font-weight: bold;
+        box-shadow: 3px 3px;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    .savedRecipeComponent {
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .savedRecipesContainer {
+        text-align: left;
+        margin-bottom: 150px;
+    }
+
+    .singleSavedRecipeContainer {
+        display: inline-block;
+        width: 50%;
+        vertical-align: top;
+        
+    }
+
+    .singleSavedRecipeCenter {
+        margin-left: 15px;
+        margin-right: 15px;
+
+        padding-left: 10px;
+        padding-right: 10px;
+
+        background: #31948f;
+        border-radius: 20px;
+        box-shadow: 5px 8px #287975;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .savedRecipeLeftContainer, .savedRecipeRightContainer {
+        display: inline-block;
+    }
+
+    .savedRecipeLeftContainer {
+        vertical-align: top;
+        width: 40%;
+    }
+
+    .savedRecipeLeftContainer p {
+        margin-top: 7.5px;
+        margin-bottom: 7.5px;
+    }
+
+    .savedRecipeRightContainer {
+        vertical-align: top;
+        width: 60%;
+    }
+    
+    .savedRecipeImageContainer {
+        width: 20;
+        display: inline-block;
+    }
+
+    .savedRecipeImage {
+        width: 200px;
+        height: 200px;
+        border-radius: 20px;
+        border: 2px solid #17242A;
+    }
+
+    .savedRecipeListHeader {
+        margin: 0;
+    }
+
+    .savedRecipeDelete {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .deleteSavedContainer{
+        padding-bottom: 20px;
+    }
+
+    .savedRecipeInfoContainer {
+        display: inline-block;
+        width: 79%;
+    }
+
+    .savedRecipeName {
+        display: block;
+    }
+    
+    .savedRecipeDescription{
+        display: block;
+        width: 80%;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .savedRecipeButtons {
+        background-color: #17242A;
+        height: 25px;
+        border-radius: 20px;
+        width: 150px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+    
+    .savedRecipeButtons:hover {
+        background: #FFFFFF;
+        color: #17242A;
+        
+    }
+    
+    .savedRecipeButtons:active {
+        font-weight: bold;
+        box-shadow: 3px 3px;
     }
 }

@@ -11,6 +11,40 @@ class recipeDisplay extends Component {
                     <h1>Start searching for a recipe!</h1>
                 </div>
             )
+        }else {
+            return (
+                <div className="recipeInfoContainer">
+
+                
+                <div className="baseRecipeInfoContainer">
+                        {this.renderBaseInfo()}
+                    </div>
+
+                    <div className="ingredientList">
+                        <h3 className="searchedHeader">Ingredients</h3>
+                        <ul className="ingredientUl"> 
+                            {this.renderIngredients()}
+                        </ul>
+                    </div>
+
+                    <div className="allergyContainer">
+                        <h3 className="searchedHeader">Allergies</h3>
+                        {this.renderAllergies()}
+                    </div>
+
+                    <div className="extraDetailContainer">
+                        {this.renderExtraDetail()}
+                    </div>
+
+                    <div className="saveRecipeButtonContainer">
+                        {this.renderSaveRecipeButton()}
+                    </div>
+
+                    <div className="nextRecipeButtonContainer">
+                        {this.renderNextButton()}
+                    </div>
+                </div>
+            )
         }
     }
 
@@ -46,7 +80,7 @@ class recipeDisplay extends Component {
     }
     
     renderAllergies() {     
-        let allergiesHTML = [<h3 className="searchedHeader">Allergy Info</h3>];
+        let allergiesHTML = [];
 
         if(this.props.currentRecipeProp === undefined) {
 
@@ -67,7 +101,7 @@ class recipeDisplay extends Component {
     }
 
     renderIngredients() {
-        let ingredientHTML = [<h3 className="searchedHeader">Ingredients</h3>];
+        let ingredientHTML = [];
 
         if(this.props.currentRecipeProp === undefined) {
             return
@@ -95,8 +129,8 @@ class recipeDisplay extends Component {
             let recipeInfo = this.props.currentRecipeProp.recipe;
 
             extraDetailHTML.push(
-                <button className="recipeDisplayButton">
-                    <a className="recipeLink" href={recipeInfo.url} target="_blank" rel="noreferrer">Cooking Details!</a>
+                <button className="recipeDisplayButton" onClick={() => this.extraCookingLink(recipeInfo.url)}>
+                    Cooking Details!
                 </button>
             )
         }
@@ -121,39 +155,34 @@ class recipeDisplay extends Component {
         }
     }
 
+    extraCookingLink(link) {
+        let recipeLinkConfirmation = window.confirm('This will open a link to the recipe. Would you like to continue?');
+
+        if (recipeLinkConfirmation == true) {
+            window.open(link, "_blank")
+        }
+    }
+
+    displayMobileRecipeFilter() {
+        document.getElementById('recipeFilterContainer').style.display = 'block';
+        document.getElementById('recipeDisplayContainer').style.display = 'none';
+    }
+
     render() {
         return (
             
-            <div className='recipeDisplayContainer'>
+            <div className='recipeDisplayContainer' id="recipeDisplayContainer">
 
-                <div className="isRecipeSearched">
-                    {this.isRecipeSearched()}
+                <div className='recipeDisplayMobileTransitionContainer'>
+                    <button className="recipeSectionTransitionButton" onClick={() => this.displayMobileRecipeFilter()}>{'<'}</button>
                 </div>
 
-                <div className="baseRecipeInfoContainer">
-                    {this.renderBaseInfo()}
-                </div>
+                <div className="recipeDisplayContainerCenter">
 
-                <div className="ingredientList">
-                    <ul className="ingredientUl">
-                        {this.renderIngredients()}
-                    </ul>
-                </div>
-
-                <div className="allergyContainer">
-                    {this.renderAllergies()}
-                </div>
-
-                <div className="extraDetailContainer">
-                    {this.renderExtraDetail()}
-                </div>
-
-                <div className="saveRecipeButtonContainer">
-                    {this.renderSaveRecipeButton()}
-                </div>
-
-                <div className="nextRecipeButtonContainer">
-                    {this.renderNextButton()}
+                    <div className="isRecipeSearched">
+                        {this.isRecipeSearched()}
+                    </div>
+                    
                 </div>
             </div>
 

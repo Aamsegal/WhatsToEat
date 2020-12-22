@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-import config from '../config';
-
 import './homepage.css';
 
 var CryptoJS = require("crypto-js");
 
 const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
+//const whats_to_eat_endpoint = 'http://localhost:8000'
+
+//const whats_to_eat_app_url = 'http://localhost:3000/application'
+const whats_to_eat_app_url = 'https://whats-to-eat.vercel.app/application'
+
+//const whats_to_eat_app_login_url = 'http://localhost:3000/loginPage';
+const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage'
 
 class HomePage extends Component {
 
@@ -16,8 +21,7 @@ class HomePage extends Component {
     let checkLoginToken = Cookies.get('loginToken');
     
     if(checkLoginToken !== undefined) {
-      //window.location = "https://whats-to-eat.vercel.app/application";
-      window.location = "http://localhost:3000/application"
+      window.location = whats_to_eat_app_url;
     }
   }
 
@@ -32,27 +36,29 @@ class HomePage extends Component {
     //  Verifying login info________________________________________________
     if(account_name === '' || account_name === undefined) {
 
-      alert('Missing "Name" input')
+      document.getElementById('homePageErrorText').innerHTML = 'Missing "Name" input';
+
       return
 
     }else if(username === '' || username === undefined) {
 
-      alert('Missing "Username" input')
+      document.getElementById('homePageErrorText').innerHTML = 'Missing "Username" input';
+
       return
 
     }else if(user_email === '' || user_email === undefined) {
 
-      alert('Missing "Email" input')
+      document.getElementById('homePageErrorText').innerHTML = 'Missing "Email" input';
       return
 
     }else if(user_password === '' || user_password === undefined) {
 
-      alert('Missing "Password" input')
+      document.getElementById('homePageErrorText').innerHTML = 'Missing "Password" input';
       return
 
     }else if(repeated_password === '' || repeated_password === undefined) {
 
-      alert('Missing "Repeated Password" input')
+      document.getElementById('homePageErrorText').innerHTML = 'Missing "Repeated Password" input';
       return
     }
 
@@ -94,8 +100,7 @@ class HomePage extends Component {
       Cookies.set('account_name', account_name, { expires: 7, secure: true});
       window.alert('Account created. Enjoy!')
       
-      //window.location = "https://whats-to-eat.vercel.app/application";
-      window.location = "http://localhost:3000/application";
+      window.location = whats_to_eat_app_url;
     })
     
     .catch(error => {
@@ -116,7 +121,14 @@ class HomePage extends Component {
 
     })
 
-    
+  }
+
+  popupDisplay(displayCondition){
+    document.getElementById('homePageAppInfoPopupContainer').style.display = displayCondition;
+  }
+
+  redirectButtons(location) {
+    window.location = location
   }
 
   render() {
@@ -124,11 +136,30 @@ class HomePage extends Component {
       <main className='HomePage'>
         
         <div className="HomePageHeaderContainer">
-            <h1>Whats to Eat?</h1>
+            <h1 className="homePageHeader">Whats to Eat?</h1>
         </div>
 
-        <div className="userLoginContainer">
-            <h2>Create an account</h2>
+        <div className="homePageAppInfoPopupContainer" id="homePageAppInfoPopupContainer">
+          <div className="homePageAppInfoPopup">
+
+            <div className="homePageAppInfoExitButtonContainer">
+              <button className="homePageAppInfoExitButton" onClick={() => this.popupDisplay('none')}>X</button>
+            </div>
+
+            <p className="homePageAppInfo">Welcome to Whats to Eat! This tool allows you to quickly search and 
+              save recipes that fit your needs. You can add ingredients you want to use, 
+              ingredients you want avoid and some allergies and start looking through 
+              recipes that fit your needs.</p>
+          </div>
+        </div>
+
+        <div className="userHomepageContainer">
+            
+            <div className="moreInfoButtonContainer">
+              <button className="moreInfoButton" onClick={() => this.popupDisplay('block')}>?</button>
+            </div>
+            
+            <h2 className="userHomepageHeader">Create an account</h2>
 
             <form className='loginForm'>
                 <input className='loginFormInput' id='nameForm' type='text' placeholder='Name'></input>
@@ -143,18 +174,14 @@ class HomePage extends Component {
             </div>
 
             <div className='userAccountButtons'>
-                <button className='createUserButton' onClick={() => this.createAnAccount()}>Create Account</button>
-                <button className='loginButton'><Link to='/loginPage'>Have an account? Login here</Link></button>
+                <button className='createUserButton homePageButton' onClick={() => this.createAnAccount()}>Create Account</button>
+                <button className='loginLinkButton homePageButton' onClick={() => this.redirectButtons(whats_to_eat_app_login_url)}>Login here</button>
             </div>
 
             <div className='noAccountContainer'>
                 <h3>Don't want to create an account?</h3>
-                <button className='findRecipeButton'><Link to='/application'>Start searching!</Link></button>
+                <button className='findRecipeButton homePageButton' onClick={() => this.redirectButtons(whats_to_eat_app_url)}>Start searching!</button>
             </div>
-        </div>
-
-        <div className="instructionContainer">
-          <h1>Content here</h1>
         </div>
 
       </main>

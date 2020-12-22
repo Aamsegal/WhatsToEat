@@ -1,27 +1,236 @@
-@media screen and (min-width: 1280px) {
+.HomePage {
+    background-color: #AAAAAA;
+    min-height: 100vh;
+}
+
+@media screen and (max-width: 1080px) {
     .HomePageHeaderContainer{
         text-align: center;
-        background-color: rgb(170, 170, 170);
-    }
-    
-    .userLoginContainer, .instructionContainer{
-        background-color: hotpink;
-        vertical-align: top;
-        display: inline-block;
-        width: 50%;
-        text-align: center;
+        background-color: #3AAFA9;
+        vertical-align: middle;
     }
 
-    .loginFormInput{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    .homePageHeader {
+        margin: 0;
+        font-size: 45px;
+        color: #ffffff;
+    }
+
+    .homePageAppInfoExitButtonContainer{
+        text-align: right;
+        margin-right: 5px;
+        padding-top: 10px;
+    }
+
+    .homePageAppInfoExitButton, .moreInfoButton{
+        background-color: #17242A;
+        width: 37.5px;
+        height: 37.5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+
+    .homePageAppInfoPopup{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #3AAFA9;
+        min-height: 200px;
+        border-radius: 20px;
+        box-shadow: 10px 12px #1c5351;
+    }
+    
+    .homePageAppInfoPopupContainer{
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 150px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: #22252a94; /* Black w/ opacity */
+    }
+
+    .homePageAppInfo{
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 50px;
+        font-size: 20px;
+    }
+
+    .moreInfoButtonContainer{
+        text-align: right;
+        padding-top: 20px;
+        width: 95%;
+    }
+
+    .userHomepageContainer {
+        width: 90%;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #3AAFA9;
+        text-align: center;
+        border-radius: 20px;
+        box-shadow: 10px 12px #287975;
+    }
+
+    .userHomepageHeader{
+        margin-top: 0;
     }
 
     .homePageErrorContainer{
-        min-height: 20px;
+        min-height: 30px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .homePageErrorText{
+        font-weight: bold;
+        font-size: 20px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: rgb(255, 208, 0);
+    }
+
+    .userAccountButtons{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .noAccountContainer {
+        padding-bottom: 20px;
+    }
+    
+    .homePageButton {
+        background-color: #17242A;
+        width: 140px;
+        height: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+
+    .homePageButton:hover, .moreInfoButton:hover, .homePageAppInfoExitButton:hover {
+        background: #FFFFFF;
+        color: #17242A;
+    }
+
+    .homePageButton:active, .moreInfoButton:hover, .homePageAppInfoExitButton:hover {
+        font-weight: bold;
+        box-shadow: 3px 3px;
+    }
+
+}
+
+
+/*Css for computer screens*/
+@media screen and (min-width: 1080px) {
+    .HomePageHeaderContainer{
+        text-align: center;
+        background-color: #3AAFA9;
+        height: 100px;
+        vertical-align: middle;
+    }
+
+    .homePageHeader {
+        margin: 0;
+        padding-top: 20px;
+        font-size: 45px;
+        color: #ffffff;
+    }
+
+    .homePageAppInfoExitButtonContainer{
+        text-align: right;
+        margin-right: 20px;
+        padding-top: 5px;
+    }
+
+    .homePageAppInfoExitButton, .moreInfoButton{
+        background-color: #17242A;
+        width: 37.5px;
+        height: 37.5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+    
+    .homePageAppInfoPopupContainer{
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 150px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: #22252a94; /* Black w/ opacity */
+    }
+
+    .homePageAppInfoPopup{
+        width: 35%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #3AAFA9;
+        min-height: 200px;
+        border-radius: 20px;
+        box-shadow: 10px 12px #1c5351;
+    }
+
+    .homePageAppInfo{
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 50px;
+        font-size: 20px;
+    }
+
+    .moreInfoButtonContainer{
+        text-align: right;
+        padding-top: 20px;
+        width: 95%;
+    }
+
+    .userHomepageContainer {
+        width: 40%;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #3AAFA9;
+        text-align: center;
+        border-radius: 20px;
+        box-shadow: 10px 12px #287975;
+    }
+
+    .userHomepageHeader{
+        margin-top: 0;
+    }
+
+    .loginFormInput{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .homePageErrorContainer{
+        min-height: 30px;
         width: 40%;
         margin-left: auto;
         margin-right: auto;
@@ -29,10 +238,39 @@
 
     .homePageErrorText{
         font-weight: bold;
-        color: red;
+        font-size: 20px;
+        color: rgb(255, 208, 0);
     }
+
     .userAccountButtons{
         margin-top: 20px;
         margin-bottom: 20px;
     }
+
+    .noAccountContainer {
+        padding-bottom: 20px;
+    }
+    
+    .homePageButton {
+        background-color: #17242A;
+        width: 140px;
+        height: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        color: #FFFFFF;
+        outline: none;
+        border: none;
+    }
+
+    .homePageButton:hover, .moreInfoButton:hover, .homePageAppInfoExitButton:hover {
+        background: #FFFFFF;
+        color: #17242A;
+    }
+
+    .homePageButton:active, .moreInfoButton:hover, .homePageAppInfoExitButton:hover {
+        font-weight: bold;
+        box-shadow: 3px 3px;
+    }
+
 }

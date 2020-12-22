@@ -19,7 +19,7 @@ class SavedRecipes extends Component {
                 this.setState({
                     userRecipes: this.props.savedRecipes
                 })
-            }, 250)
+            }, 750)
             
           }
     }
@@ -52,52 +52,56 @@ class SavedRecipes extends Component {
                 
                 savedRecipeHTML.push(
                     <div className='singleSavedRecipeContainer' id={currentRecipeId} key={currentRecipeId}>
+                        <div className="singleSavedRecipeCenter">
+
                         
-                        <div className='savedRecipeName'>
-                            <h1>{currentRecipeName}</h1>
-                        </div>
-
-                        <div className='savedRecipeLeftContainer'>
-
-                            <img className='savedRecipeImage' src={imageLink} alt={currentRecipeName}></img>
-                            
-                            <div className='savedRecipeLink'>
-                                <p className="savedRecipeCookTime">Cook Time: {cookTime} minutes</p>
-                                <p className="savedRecipeServingSize">Serving size: {servingSize}</p>
-                                <p className="savedRecipeCalories">Total calories: {calories}</p>
-                                <a href={recipeLink} target="_blank" rel="noreferrer">More Recipe Info!</a>
+                            <div className='savedRecipeName'>
+                                <h1>{currentRecipeName}</h1>
                             </div>
 
-                        </div>
+                            <div className='savedRecipeLeftContainer'>
 
-                        <div className='savedRecipeRightContainer'>
-                            
-                            <div className='savedRecipeIngredients'>
-                                <h2 className="savedRecipeListHeader">Ingredients</h2>
-                                <ul className="savedIngredientList">
-
-                                    {this.renderSavedIngredients(currentIngredients)}
-                                    
-                                </ul>
+                                <img className='savedRecipeImage' src={imageLink} alt={currentRecipeName}></img>
+                                
+                                <div className='savedRecipeLink'>
+                                    <p className="savedRecipeCookTime">Cook Time: {cookTime} minutes</p>
+                                    <p className="savedRecipeServingSize">Serving size: {servingSize}</p>
+                                    <p className="savedRecipeCalories">Total calories: {calories}</p>
+                                    <button className="savedRecipeButtons" onClick={() => this.savedExtraCookingLink(recipeLink)}>More Recipe Info!</button>
+                                </div>
 
                             </div>
 
-                            <div className='savedAllergiesContainer'>
+                            <div className='savedRecipeRightContainer'>
+                                
+                                <div className='savedRecipeIngredients'>
+                                    <h2 className="savedRecipeListHeader">Ingredients</h2>
+                                    <ul className="savedIngredientList">
 
-                                <h2 className="savedRecipeListHeader">Allergies</h2>
+                                        {this.renderSavedIngredients(currentIngredients)}
+                                        
+                                    </ul>
 
-                                <ul className="savedAllergiesList">
+                                </div>
 
-                                    {this.renderSavedAllergies(currentAllergies)}
+                                <div className='savedAllergiesContainer'>
 
-                                </ul>
+                                    <h2 className="savedRecipeListHeader">Allergies</h2>
+
+                                    <ul className="savedAllergiesList">
+
+                                        {this.renderSavedAllergies(currentAllergies)}
+
+                                    </ul>
+
+                                </div>
 
                             </div>
 
+                            <div className="deleteSavedContainer">
+                                <button className='savedRecipeDelete savedRecipeButtons' onClick={() => this.props.deleteRecipeFunction(currentRecipeId,currentRecipeName)}>Delete recipe</button>
+                            </div>
                         </div>
-
-                        <button className='savedRecipeDelete' onClick={() => this.props.deleteRecipeFunction(currentRecipeId,currentRecipeName)}>Delete recipe</button>
-                    
                     </div>
                 )
                 
@@ -145,6 +149,14 @@ class SavedRecipes extends Component {
         }
 
         return savedAllergiesHTML;
+    }
+
+    savedExtraCookingLink(link) {
+        let savedLinkConfirmation = window.confirm('This will open a link to the recipe. Would you like to continue?');
+
+        if (savedLinkConfirmation == true) {
+            window.open(link, "_blank")
+        }
     }
 
     render() {

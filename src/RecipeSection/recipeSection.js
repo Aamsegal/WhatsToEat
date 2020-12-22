@@ -13,14 +13,19 @@ class recipeSection extends Component {
                 
                 <div className="recipeSectionTitleContainer">
                     <h1 className="recipeSectionTitle">Start Searching</h1>
+                    <h2 className="savedSuccessful" id="savedSuccessful">Recipe Saved!</h2>
+                </div>
+
+                <div className="recipeComponentsContainer">
+                    <RecipeFilter recipeApiSearch={this.props.recipeApiSearch}/>
+                    <RecipeDisplay 
+                        currentRecipeProp={this.props.currentRecipeProp}
+                        nextRecipeFunction={this.props.nextRecipeFunction}
+                        saveRecipeFunction={this.props.saveRecipeFunction}
+                    />
                 </div>
                 
-                <RecipeFilter recipeApiSearch={this.props.recipeApiSearch}/>
-                <RecipeDisplay 
-                    currentRecipeProp={this.props.currentRecipeProp}
-                    nextRecipeFunction={this.props.nextRecipeFunction}
-                    saveRecipeFunction={this.props.saveRecipeFunction}
-                />
+                
                 
             </div>
             

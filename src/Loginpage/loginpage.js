@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 
-import config from '../config';
 import './loginpage.css';
 
 var CryptoJS = require("crypto-js");
@@ -61,8 +59,8 @@ class LoginPage extends Component {
                     alert(`You have logged into ${accountNameCookie}.`);
 
                     //  This redirects to this link.
-                    //window.location = "https://whats-to-eat.vercel.app/application";
-                    window.location = "http://localhost:3000/application";
+                    window.location = "https://whats-to-eat.vercel.app/application";
+                    //window.location = "http://localhost:3000/application";
                 }
             
             })
@@ -78,11 +76,11 @@ class LoginPage extends Component {
             <main className="LoginPage">
 
                 <div className="LoginPageHeaderContainer">
-                    <Link to='/'><h1>Whats to Eat?</h1></Link>
+                    <Link to='/' className="loginPageLinkTo" style={{textDecoration: 'none'}}><h1 className="loginPageHeader">Whats to Eat?</h1></Link>
                 </div>
 
                 <div className="userLoginContainer">
-                    <h2>Login</h2>
+                    <h2 className="userLoginHeader">Login</h2>
 
                     <form className='loginForm'>
                         <input className='loginFormInput' id='userNameFormLogin' type='text' placeholder='Username'></input>
@@ -90,7 +88,7 @@ class LoginPage extends Component {
                         
                     </form>
 
-                    <button onClick={() => this.loginToAccount()}>Login</button>
+                    <button onClick={() => this.loginToAccount()} className="loginButton">Login</button>
 
                 </div>
 
