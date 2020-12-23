@@ -86,10 +86,10 @@ class Appnavbar extends Component {
     //Sends the user to either the homepage or login page depending on the button press
     goToHomePage(destination) {
 
-        if(destination === 'homepage') {
+        if(destination === 'login') {
             window.location = "https://whats-to-eat.vercel.app/loginPage"
 
-        }else if (destination === 'login') {
+        }else if (destination === 'homepage') {
             window.location = "https://whats-to-eat.vercel.app"
         }
         
