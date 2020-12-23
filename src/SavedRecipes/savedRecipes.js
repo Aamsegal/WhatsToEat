@@ -10,7 +10,7 @@ class SavedRecipes extends Component {
         userRecipes: []
     }
     
-    
+    //  Checks for props and waits to see response as the page could (before timeout) load before props were properly read
     componentDidUpdate(prevProps) {
 
         if(prevProps.savedRecipes !== this.props.savedRecipes) {
@@ -37,6 +37,7 @@ class SavedRecipes extends Component {
             )
         }else {
 
+            //  Iterates through the saved recipe state which is send down the api call in app and renders the info accordingly
             for(let i = 0; i < savedRecipes.length; i++) {
                 const currentRecipe = savedRecipes[i];
                                 
@@ -151,6 +152,7 @@ class SavedRecipes extends Component {
         return savedAllergiesHTML;
     }
 
+    //  Lets the user know this button will send them to a different link, allowing them to ignore it.
     savedExtraCookingLink(link) {
         let savedLinkConfirmation = window.confirm('This will open a link to the recipe. Would you like to continue?');
 

@@ -5,24 +5,22 @@ import "./Appnavbar.css";
 
 class Appnavbar extends Component {
 
+    //Used to choose what sections get displayed, and identifies if its on mobile
     displaySelectedSection(buttonPressed, isMobile) {
-        if(buttonPressed === 'recipe') {
+        if(buttonPressed === 'Recipe') {
 
             document.getElementById('recipeSectionComponent').style.display = 'block';
             document.getElementById('savedRecipeComponent').style.display = 'none';
-            //document.getElementById('userProfileComponent').style.display = 'none';
 
         }else if (buttonPressed === 'Saved') {
             
             document.getElementById('recipeSectionComponent').style.display = 'none';
             document.getElementById('savedRecipeComponent').style.display = 'block';
-            //document.getElementById('userProfileComponent').style.display = 'none';
 
         }else if (buttonPressed === 'Profile'){
             
             document.getElementById('recipeSectionComponent').style.display = 'none';
             document.getElementById('savedRecipeComponent').style.display = 'none';
-            //document.getElementById('userProfileComponent').style.display = 'block';
 
         }else {
             return
@@ -34,20 +32,71 @@ class Appnavbar extends Component {
     }
 
     //  Checks cookies to see if we have the auth token and account name
-    isLoggedIn() {
+    isLoggedInUserName() {
         let account_name = Cookies.get('account_name');
 
         if(account_name === undefined || account_name === '') {
             account_name = 'Guest'
-        }
-
+        
+        } 
+        
         return <div className="appNavbarUsernameContainer">
                 <h2 className="appNavbarUsername">Current user: {account_name}</h2>
             </div>
+
+    }
+
+    //Renders the navbar buttons depending on if someone is logged in
+    isLoggedInNavbarButtons() {
+        let account_name = Cookies.get('account_name');
+
+        if(account_name === undefined || account_name === '') {
+            return <div className="appNavbarButtonContainer">
+                <button className="appNavbarNavButton" onClick={() => this.goToHomePage('homepage')}>Homepage</button>
+                <button className="appNavbarNavButton" onClick={() => this.goToHomePage('login')}>Login</button>
+
+            </div>
+        }else {
+            return <div className="appNavbarButtonContainer">
+                <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Recipe')}>Recipe Search</button>
+                <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Saved')}>Saved Recipes</button>
+                <button className="appNavbarNavButton" onClick={() => this.logOut()}>Log Out</button>
+            </div>
+        }
+    }
+
+    //Renders the navbar buttons depending on if someone is logged in for mobile
+    isLoggedInNavbarMobile() {
+        let account_name = Cookies.get('account_name');
+
+        if(account_name === undefined || account_name === '') {
+            return <div className="appNavbarBurgerMenuButtonContainer">
+                <button className="appNavbarNavButton" onClick={() => this.goToHomePage('homepage')}>Homepage</button>
+                <button className="appNavbarNavButton" onClick={() => this.goToHomePage('login')}>Login</button>
+            </div>
+        }else {
+            return <div className="appNavbarBurgerMenuButtonContainer">
+                <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Recipe', true)}>Recipe Search</button>
+                <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Saved', true)}>Saved Recipes</button>
+                <button className="appNavbarNavButton" onClick={() => this.logOut()}>Log Out</button>
+            </div>
+        }
+    }
+
+    //Sends the user to either the homepage or login page depending on the button press
+    goToHomePage(destination) {
+
+        if(destination === 'homepage') {
+            window.location = "https://whats-to-eat.vercel.app/loginPage"
+
+        }else if (destination === 'login') {
+            window.location = "https://whats-to-eat.vercel.app"
+        }
+        
     }
 
     //  Confirms the user wants to log out then resets the cookies and redirects to the home
-    logOut(isMobile) {
+    logOut() {
         let accountName_Cookie = Cookies.get('account_name');
         let logoutAnswer = window.confirm(`Are you sure you want to log out of ${accountName_Cookie}?`)
 
@@ -55,16 +104,11 @@ class Appnavbar extends Component {
             Cookies.remove('account_name');
             Cookies.remove('loginToken');
 
-            if(isMobile === true) {
-                console.log('is mobile.')
-            }
-
             window.location = "https://whats-to-eat.vercel.app"
-
-            //window.location = "http://localhost:3000"
         }
     }
 
+    //Shows the burger menu for mobile
     displayMobileAppButtons() {
         document.getElementById('appNavbarBurgerMenu').style.display = 'block';
     }
@@ -78,13 +122,9 @@ class Appnavbar extends Component {
                 </div>
                 
                 <div className="appNavbarRight">
-                    {this.isLoggedIn()}
+                    {this.isLoggedInUserName()}
 
-                    <div className="appNavbarButtonContainer">
-                        <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('recipe')}>Recipe Search</button>
-                        <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Saved')}>Saved Recipes</button>
-                        <button className="appNavbarNavButton" onClick={() => this.logOut()}>Log Out</button>
-                    </div>
+                    {this.isLoggedInNavbarButtons()}
 
                     <div className="appNavbarBurgerIcon">
                         <img src={burgerMenuIcon} className="burgerMenuIcon" onClick={() => this.displayMobileAppButtons()}></img>
@@ -92,11 +132,7 @@ class Appnavbar extends Component {
 
                     <div className="appNavbarBurgerMenu" id="appNavbarBurgerMenu">
 
-                        <div className="appNavbarBurgerMenuButtonContainer">
-                            <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('recipe', true)}>Recipe Search</button>
-                            <button className="appNavbarNavButton" onClick={() => this.displaySelectedSection('Saved', true)}>Saved Recipes</button>
-                            <button className="appNavbarNavButton" onClick={() => this.logOut(true)}>Log Out</button>
-                        </div>
+                        {this.isLoggedInNavbarMobile()}
                         
                     </div>
 

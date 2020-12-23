@@ -4,6 +4,7 @@ import './recipeDisplay.css';
 
 class recipeDisplay extends Component {
 
+    //  If no recipe has been searched change html to fit this
     isRecipeSearched() {
         if(this.props.currentRecipeProp === undefined) {
             return (
@@ -48,6 +49,7 @@ class recipeDisplay extends Component {
         }
     }
 
+    //  Renders the core info of the recipe based on props from app where the api call is made.
     renderBaseInfo() {
         let currentRecipeHTML = [];
 
@@ -56,6 +58,7 @@ class recipeDisplay extends Component {
         }else {
             let currentRecipeInfo = this.props.currentRecipeProp.recipe;
 
+            //  Pushed the html to the variable to be returned
             currentRecipeHTML.push(
                 <div className="displayedRecipe">
 
@@ -79,6 +82,7 @@ class recipeDisplay extends Component {
         
     }
     
+    //  Renders the html based on the allergy info provided
     renderAllergies() {     
         let allergiesHTML = [];
 
@@ -100,6 +104,7 @@ class recipeDisplay extends Component {
         return allergiesHTML;
     }
 
+    //  Same thing as RenderAllergies. Displays the ingredients
     renderIngredients() {
         let ingredientHTML = [];
 
@@ -120,6 +125,7 @@ class recipeDisplay extends Component {
         return ingredientHTML;
     }
 
+    //  Renders the button to send the user to a link for more recipe info
     renderExtraDetail() {
         let extraDetailHTML = [];
 
@@ -138,6 +144,7 @@ class recipeDisplay extends Component {
         return extraDetailHTML;
     }
 
+    //  Renders the save Recipe button
     renderSaveRecipeButton() {
         if(this.props.currentRecipeProp === undefined) {
             return
@@ -146,7 +153,7 @@ class recipeDisplay extends Component {
         }
     }
 
-
+    // Renders the next button
     renderNextButton() {
         if(this.props.currentRecipeProp === undefined) {
             return
@@ -155,6 +162,7 @@ class recipeDisplay extends Component {
         }
     }
 
+    //  Confirmation window for when the user is going to be sent to a different link
     extraCookingLink(link) {
         let recipeLinkConfirmation = window.confirm('This will open a link to the recipe. Would you like to continue?');
 
@@ -163,6 +171,7 @@ class recipeDisplay extends Component {
         }
     }
 
+    //  Hide display section and shows filter section for mobile
     displayMobileRecipeFilter() {
         document.getElementById('recipeFilterContainer').style.display = 'block';
         document.getElementById('recipeDisplayContainer').style.display = 'none';

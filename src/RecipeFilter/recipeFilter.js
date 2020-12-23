@@ -2,14 +2,6 @@ import React, { Component } from 'react';
 
 import './recipeFilter.css';
 
-//  Notes for api call
-//---Can add extra health filters, just need to add another 
-//(health={filter1}&health={filter2})
-
-//---Can add extra food filters. q={food1}+{food2}
-
-//
-
 class recipeFilter extends Component {
 
     state ={
@@ -89,6 +81,8 @@ class recipeFilter extends Component {
         }
     }
 
+
+    //  Renders the excluded ingredients in the same way that the included ingredients are.
     renderExcludedIngredients() {
         let excludedHtml = [];
         let excludedList = this.state.excludedIngredients;
@@ -114,6 +108,7 @@ class recipeFilter extends Component {
         return excludedHtml;
     }
 
+    //  Removes the ingredient from the state which is used to make the api call for recipe searching
     deleteExcludedIngredients(excludedIngredientId) {
         let excludedList = this.state.excludedIngredients;
         
@@ -167,6 +162,7 @@ class recipeFilter extends Component {
         this.props.recipeApiSearch(ingredientList,excludedIngredientList,selectedDiets,selectedHealth /*,mealType*/);
     }
 
+    //  Hides the filter section and shows the display section for mobile
     displayMobileRecipeDisplay() {
         document.getElementById('recipeFilterContainer').style.display = 'none';
         document.getElementById('recipeDisplayContainer').style.display = 'block';

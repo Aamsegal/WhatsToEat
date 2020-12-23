@@ -9,6 +9,7 @@ const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
 
 class LoginPage extends Component {
 
+    //  Checks if there is a user with the information presented and if so it saved the login token which use used for all api calls
     loginToAccount() {        
         let username = document.getElementById('userNameFormLogin').value;
         let user_password = document.getElementById('passwordFormLogin').value;
@@ -46,9 +47,6 @@ class LoginPage extends Component {
                 if(data.length === 2) {
                     let loginTokenCookie = data[0].id;
                     let accountNameCookie = data[1].account_name;
-                    
-                    //Cookies.set('loginToken', loginTokenCookie, { expires: 7, secure: true})
-                    //Cookies.set('account_name', accountNameCookie, { expires: 7, secure: true});
 
                     const expireTime = 60*60*24*7   //  Currently set to expire in 7 days
 
@@ -60,7 +58,6 @@ class LoginPage extends Component {
 
                     //  This redirects to this link.
                     window.location = "https://whats-to-eat.vercel.app/application";
-                    //window.location = "http://localhost:3000/application";
                 }
             
             })

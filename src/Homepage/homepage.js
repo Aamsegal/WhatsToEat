@@ -6,17 +6,17 @@ import './homepage.css';
 
 var CryptoJS = require("crypto-js");
 
+//These are environmental variables
 const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
 //const whats_to_eat_endpoint = 'http://localhost:8000'
 
-//const whats_to_eat_app_url = 'http://localhost:3000/application'
 const whats_to_eat_app_url = 'https://whats-to-eat.vercel.app/application'
 
-//const whats_to_eat_app_login_url = 'http://localhost:3000/loginPage';
 const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage'
 
 class HomePage extends Component {
 
+  //Checks if there are cookies for the user and if so it will auto login the user based on the info
   componentDidMount() {
     let checkLoginToken = Cookies.get('loginToken');
     
@@ -25,6 +25,7 @@ class HomePage extends Component {
     }
   }
 
+  //Allows the user to create an account. Error messages will popup if certain conditions are not met
   createAnAccount(){
 
     let account_name = document.getElementById('nameForm').value;
@@ -62,10 +63,27 @@ class HomePage extends Component {
       return
     }
 
+    //  Verifying length of Account name
+    if(account_name.length < 3 || account_name.length > 15){
+      document.getElementById('homePageErrorText').innerHTML = 'Account name must be 3 to 20 characters';
+      return
+    }
+
+    //  Verifying length of password
+    if(user_password.length < 8 || user_password.length > 20) {
+      document.getElementById('homePageErrorText').innerHTML = 'Your password must be between 8 and 20 characters';
+      return
+    }
+
+    //  Verifying length of Account name
+    if(username.length < 3 || username.length > 15){
+      document.getElementById('homePageErrorText').innerHTML = 'Username name must be 3 to 20 characters';
+      return
+    }
+
     //  Verifying the two passwords match_____________________________________
     if(user_password !== repeated_password) {
-      alert('Your passwords dont match.')
-      
+      document.getElementById('homePageErrorText').innerHTML = "Your passwords don't match.";
       return
     }
 
@@ -74,7 +92,7 @@ class HomePage extends Component {
     user_password = CryptoJS.MD5(user_password).toString();
 
 
-    //  API Call_______________________________________________________________
+    //  API Call to create an account.
     const newUserInfo = {account_name, username, user_password, user_email};
 
     fetch(`${whats_to_eat_endpoint}/api/userEndpoint`, {
@@ -123,10 +141,12 @@ class HomePage extends Component {
 
   }
 
+  //  Popup logic to display the app info
   popupDisplay(displayCondition){
     document.getElementById('homePageAppInfoPopupContainer').style.display = displayCondition;
   }
 
+  //  redirects to either login or the app as a guest
   redirectButtons(location) {
     window.location = location
   }

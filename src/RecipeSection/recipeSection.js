@@ -6,6 +6,8 @@ import RecipeDisplay from '../RecipeDisplay/recipeDisplay';
 import './recipeSection.css';
 
 class recipeSection extends Component {
+
+    //Nothing really crazy here. Just a parent for two more complex components
     render() {
         return (
 
