@@ -15,10 +15,10 @@ class recipeFilter extends Component {
         let ingredient = document.getElementById('ingredients').value;
 
         if(ingredient === '') {
-            alert('No ingredient added.')
+            alert('No ingredient added.');
         }else {
             let currentIngredients = this.state.ingredients;
-            currentIngredients.push(ingredient)
+            currentIngredients.push(ingredient);
 
             this.setState({ingredients: currentIngredients})
             document.getElementById('ingredients').value = '';
@@ -71,12 +71,12 @@ class recipeFilter extends Component {
         let excludedIngredient = document.getElementById('ingredients').value;
 
         if(excludedIngredient === '') {
-            alert('No ingredient to exclude.')
+            alert('No ingredient to exclude.');
         }else {
             let currentIngredients = this.state.excludedIngredients;
             currentIngredients.push(excludedIngredient);
 
-            this.setState({excludedIngredients: currentIngredients})
+            this.setState({excludedIngredients: currentIngredients});
             document.getElementById('ingredients').value = '';
         }
     }
@@ -114,7 +114,7 @@ class recipeFilter extends Component {
         
         excludedList.splice(excludedIngredientId,1);
 
-        this.setState({excludedIngredients: excludedList})
+        this.setState({excludedIngredients: excludedList});
     }
 
     //Api Search method parameters____________________________________________________________
@@ -190,7 +190,7 @@ class recipeFilter extends Component {
 
                             <div className="checkboxContainer">
                                 <input type="checkbox" id="diet1" name="diet1" value="high-protein" />
-                                <label htmlFor="diet1">High-Protien</label>
+                                <label htmlFor="diet1">High-Protein</label>
                             </div>
                             
                             <div className="checkboxContainer">
@@ -200,7 +200,7 @@ class recipeFilter extends Component {
                             
                             <div className="checkboxContainer">
                                 <input type="checkbox" id="diet3" name="diet3" value="low-fat" />
-                                <label htmlFor="diet1">Low-Fat</label>
+                                <label htmlFor="diet3">Low-Fat</label>
                             </div>
                             
                             <div className="checkboxContainer">
@@ -254,7 +254,7 @@ class recipeFilter extends Component {
                             <div className='recipeFilterFoodForm' id="recipeFilterFoodForm"
                             data-tooltip="Type an ingredient and either click the add or exclude button."
                             >
-
+                                <label htmlFor="ingredients" display="block" className="ingredientInputLabel">Ingredients</label>
                                 <input 
                                     type="text" id="ingredients" className="ingredientFormBox" 
                                     placeholder="chicken, broccoli, pasta"

@@ -10,10 +10,10 @@ var CryptoJS = require("crypto-js");
 const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
 //const whats_to_eat_endpoint = 'http://localhost:8000'
 
-//const whats_to_eat_app_url = /'https://whats-to-eat.vercel.app/application'
+//const whats_to_eat_app_url = /'https://whats-to-eat.vercel.app/application';
 const whats_to_eat_app_url = 'http://localhost:3000/application'
 
-//const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage'
+//const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage';
 const whats_to_eat_app_login_url = 'http://localhost:3000/loginPage'
 
 class HomePage extends Component {
@@ -150,7 +150,7 @@ class HomePage extends Component {
 
   //  redirects to either login or the app as a guest
   redirectButtons(location) {
-    window.location = location
+    window.location = location;
   }
 
   render() {
@@ -184,11 +184,31 @@ class HomePage extends Component {
             <h2 className="userHomepageHeader">Create an account</h2>
 
             <form className='loginForm'>
-                <input className='loginFormInput' id='nameForm' type='text' placeholder='Name'></input>
-                <input className='loginFormInput' id='userNameForm' type='text' placeholder='Username'></input>
-                <input className='loginFormInput' id='userEmail' type='text' placeholder='email1234@email.com'></input>
-                <input className='loginFormInput' id='passwordForm' type='password' placeholder='Password'></input>
-                <input className='loginFormInput' id='repeatedPassForm' type='password' placeholder='Repeat Password'></input>
+
+                <div className="loginFormInputContainer">
+                  <label htmlFor="nameForm" className="homepageLabel">Name</label>
+                  <input className='loginFormInput' id='nameForm' type='text' placeholder='Name'></input>
+                </div>
+
+                <div className="loginFormInputContainer">
+                  <label htmlFor="userNameForm" className="homepageLabel">Username</label>
+                  <input className='loginFormInput' id='userNameForm' type='text' placeholder='Username'></input>
+                </div>
+
+                <div className="loginFormInputContainer">
+                  <label htmlFor="userEmail" className="homepageLabel">Email</label>
+                  <input className='loginFormInput' id='userEmail' type='text' placeholder='email1234@email.com'></input>
+                </div>
+
+                <div className="loginFormInputContainer">
+                  <label htmlFor="passwordForm" className="homepageLabel">Password</label>
+                  <input className='loginFormInput' id='passwordForm' type='password' placeholder='Password'></input>
+                </div>
+
+                <div className="loginFormInputContainer">
+                  <label htmlFor="repeatedPassForm" className="homepageLabel">Repeat Password</label>
+                  <input className='loginFormInput' id='repeatedPassForm' type='password' placeholder='Repeat Password'></input>
+                </div>
             </form>
 
             <div className="homePageErrorContainer">

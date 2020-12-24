@@ -16,9 +16,9 @@ class LoginPage extends Component {
 
         //  Checks if the form is empty
         if( username === '') {
-            alert('Please provide a username.')
+            alert('Please provide a username.');
         }else if(user_password === '') {
-            alert('Please provide a password.')
+            alert('Please provide a password.');
         }else {
             //  Hashing password and username___________________________________
             username = CryptoJS.MD5(username).toString();
@@ -36,7 +36,7 @@ class LoginPage extends Component {
             .then(res => {
 
                 if(!res.ok) {
-                    alert('No user with that username and password found. Try again.')
+                    alert('No user with that username and password found. Try again.');
                     return res.json().then(e => Promise.reject(e))
                 }
 
@@ -48,7 +48,7 @@ class LoginPage extends Component {
                     let loginTokenCookie = data[0].id;
                     let accountNameCookie = data[1].account_name;
 
-                    const expireTime = 60*60*24*7   //  Currently set to expire in 7 days
+                    const expireTime = 60*60*24*7;   //  Currently set to expire in 7 days
 
                     document.cookie = `loginToken=${loginTokenCookie}; max-age=${expireTime}; secure`;
                     document.cookie = `account_name=${accountNameCookie}; max-age=${expireTime}; secure`
@@ -80,8 +80,15 @@ class LoginPage extends Component {
                     <h2 className="userLoginHeader">Login</h2>
 
                     <form className='loginForm'>
-                        <input className='loginFormInput' id='userNameFormLogin' type='text' placeholder='Username'></input>
-                        <input className='loginFormInput' id='passwordFormLogin' type='text' placeholder='Password'></input>
+                        <div className="loginFormInputContainer">
+                            <label htmlFor="userNameFormLogin" className="homepageLabel">Username</label>
+                            <input className='loginFormInput' id='userNameFormLogin' type='text' placeholder='Username'></input>
+                        </div>
+
+                        <div className="loginFormInputContainer">
+                            <label htmlFor="passwordFormLogin" className="homepageLabel">Password</label>
+                            <input className='loginFormInput' id='passwordFormLogin' type='password' placeholder='Password'></input>
+                        </div>
                         
                     </form>
 

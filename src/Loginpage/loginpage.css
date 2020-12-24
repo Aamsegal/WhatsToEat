@@ -52,16 +52,6 @@
         margin-bottom: 30px;
     }
 
-    .loginFormInput{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        width: 50%;
-        font-size: 20px;
-    }
-
     .loginButton{
         margin-bottom: 30px;
         background-color: #17242A;
@@ -128,14 +118,6 @@
     .loginForm{
         margin-top: 30px;
         margin-bottom: 30px;
-    }
-
-    .loginFormInput{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 5px;
-        margin-bottom: 5px;
     }
 
     .loginButton{

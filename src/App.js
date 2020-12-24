@@ -115,7 +115,7 @@ class App extends Component {
       return res.json()
     })
 
-    //  Adding the recipe array to teh 
+    //  Adding the recipe array to the 
     .then(ingredients => {
 
       // Change the array of objects into just an array of ingredients
@@ -242,10 +242,10 @@ class App extends Component {
   nextRecipe = () => {
 
     if(this.state.recipes.length === 1) {
-      console.log('There are no more recipies')
+      console.log('There are no more recipes')
     }else {
       //saved the current recipe to save to past recipes later
-      let currentrecipe = this.state.recipes[0];
+      let currentRecipe = this.state.recipes[0];
       
       //Grabs all the recipes to then splice later
       let remainingRecipes = this.state.recipes;
@@ -255,10 +255,10 @@ class App extends Component {
 
       //removes the front most recipe from the recipe state
       remainingRecipes.splice(0,1);
-      this.setState({recipes: remainingRecipes})
+      this.setState({recipes: remainingRecipes});
 
       //adds the current recipe to the past recipe list and saved the past state with the new array
-      pastRecipes.push(currentrecipe);
+      pastRecipes.push(currentRecipe);
       this.setState({pastRecipes: pastRecipes})
 
       window.scrollTo(0,0);
@@ -330,7 +330,7 @@ class App extends Component {
     })
 
     .then(loginToken => {
-      this.getSavedRecipes(loginToken)
+      this.getSavedRecipes(loginToken);
     })
   }
 

@@ -90,6 +90,26 @@
         box-shadow: 10px 12px #287975;
     }
 
+    .loginFormInputContainer{
+        text-align: left;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .loginFormInput{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .homepageLabel{
+        font-weight: bold;
+    }
+
     .userHomepageHeader{
         margin-top: 0;
     }
@@ -237,11 +257,22 @@
         margin-top: 0;
     }
 
+    .loginFormInputContainer{
+        text-align: left;
+        width: 150px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .homepageLabel{
+        font-weight: bold;
+    }
+
     .loginFormInput{
         display: block;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 5px;
+        margin-top: 0;
         margin-bottom: 5px;
     }
 

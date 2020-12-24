@@ -1,3 +1,7 @@
+.ingredientInputLabel{
+    padding-right: 10px;
+}
+
 .ingredientInclusionButton, .recipeSearchButton, .deleteIngredientButton {
     background-color: #17242A;
     border-radius: 20px;
