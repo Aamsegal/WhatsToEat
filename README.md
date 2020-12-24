@@ -13,8 +13,10 @@ Have salmon, wonton paper and are allergic to red peppers? Have no fear! Just ad
 
 `Application Screenshots`
 
-<img src=./Screenshots/Whats_to_Eat_Screenshots_1.png width="300" >
-<img src=./Screenshots/Whats_to_Eat_Screenshots_2.png width="300" >
-<img src="./Screenshots/Whats_to_Eat_Screenshots_2.png" height="400" >
+<img src="https://github.com/Aamsegal/WhatsToEat/blob/master/src/Screenshots/Whats_to_Eat_Screenshot_1.png" width="300" >
+
+<img src="https://github.com/Aamsegal/WhatsToEat/blob/master/src/Screenshots/Whats_to_Eat_Screenshot_2.png" width="300" >
+
+<img src="https://github.com/Aamsegal/WhatsToEat/blob/master/src/Screenshots/Whats_to_Eat_Screenshot_1.png" height="400" >
     
     
