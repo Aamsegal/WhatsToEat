@@ -8,13 +8,10 @@ var CryptoJS = require("crypto-js");
 
 //These are environmental variables
 const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
-//const whats_to_eat_endpoint = 'http://localhost:8000'
 
-//const whats_to_eat_app_url = /'https://whats-to-eat.vercel.app/application';
-const whats_to_eat_app_url = 'http://localhost:3000/application'
+const whats_to_eat_app_url = 'https://whats-to-eat.vercel.app/application';
 
-//const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage';
-const whats_to_eat_app_login_url = 'http://localhost:3000/loginPage'
+const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage';
 
 class HomePage extends Component {
 
