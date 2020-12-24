@@ -10,9 +10,11 @@ var CryptoJS = require("crypto-js");
 const whats_to_eat_endpoint = process.env.REACT_APP_DATABASE_API_ENDPOINT;
 //const whats_to_eat_endpoint = 'http://localhost:8000'
 
-const whats_to_eat_app_url = 'https://whats-to-eat.vercel.app/application'
+//const whats_to_eat_app_url = /'https://whats-to-eat.vercel.app/application'
+const whats_to_eat_app_url = 'http://localhost:3000/application'
 
-const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage'
+//const whats_to_eat_app_login_url = 'https://whats-to-eat.vercel.app/loginPage'
+const whats_to_eat_app_login_url = 'http://localhost:3000/loginPage'
 
 class HomePage extends Component {
 
@@ -176,7 +178,7 @@ class HomePage extends Component {
         <div className="userHomepageContainer">
             
             <div className="moreInfoButtonContainer">
-              <button className="moreInfoButton" onClick={() => this.popupDisplay('block')}>?</button>
+              <button className="moreInfoButton" onClick={() => this.popupDisplay('block')}>About</button>
             </div>
             
             <h2 className="userHomepageHeader">Create an account</h2>
@@ -185,8 +187,8 @@ class HomePage extends Component {
                 <input className='loginFormInput' id='nameForm' type='text' placeholder='Name'></input>
                 <input className='loginFormInput' id='userNameForm' type='text' placeholder='Username'></input>
                 <input className='loginFormInput' id='userEmail' type='text' placeholder='email1234@email.com'></input>
-                <input className='loginFormInput' id='passwordForm' type='text' placeholder='Password'></input>
-                <input className='loginFormInput' id='repeatedPassForm' type='text' placeholder='Repeat Password'></input>
+                <input className='loginFormInput' id='passwordForm' type='password' placeholder='Password'></input>
+                <input className='loginFormInput' id='repeatedPassForm' type='password' placeholder='Repeat Password'></input>
             </form>
 
             <div className="homePageErrorContainer">

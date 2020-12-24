@@ -24,14 +24,22 @@
 
     .homePageAppInfoExitButton, .moreInfoButton{
         background-color: #17242A;
-        width: 37.5px;
-        height: 37.5px;
         margin-left: 10px;
         margin-right: 10px;
         border-radius: 20px;
         color: #FFFFFF;
         outline: none;
         border: none;
+    }
+
+    .moreInfoButton{
+        width: 60px;
+        height: 25px;
+    }
+
+    .homePageAppInfoExitButton{
+        width: 37.5px;
+        height: 37.5px;
     }
 
     .homePageAppInfoPopup{
@@ -159,14 +167,22 @@
 
     .homePageAppInfoExitButton, .moreInfoButton{
         background-color: #17242A;
-        width: 37.5px;
-        height: 37.5px;
         margin-left: 10px;
         margin-right: 10px;
         border-radius: 20px;
         color: #FFFFFF;
         outline: none;
         border: none;
+    }
+
+    .moreInfoButton{
+        width: 60px;
+        height: 25px;
+    }
+
+    .homePageAppInfoExitButton{
+        width: 37.5px;
+        height: 37.5px;
     }
     
     .homePageAppInfoPopupContainer{
@@ -231,7 +247,7 @@
 
     .homePageErrorContainer{
         min-height: 30px;
-        width: 40%;
+        width: 60%;
         margin-left: auto;
         margin-right: auto;
     }

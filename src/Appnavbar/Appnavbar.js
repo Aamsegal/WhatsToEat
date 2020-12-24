@@ -87,10 +87,12 @@ class Appnavbar extends Component {
     goToHomePage(destination) {
 
         if(destination === 'login') {
-            window.location = "https://whats-to-eat.vercel.app/loginPage"
+            //window.location = "https://whats-to-eat.vercel.app/loginPage"
+            window.location = "http://localhost:3000/loginPage"
 
         }else if (destination === 'homepage') {
-            window.location = "https://whats-to-eat.vercel.app"
+            //window.location = "https://whats-to-eat.vercel.app"
+            window.location = "http://localhost:3000/"
         }
         
     }
@@ -104,7 +106,8 @@ class Appnavbar extends Component {
             Cookies.remove('account_name');
             Cookies.remove('loginToken');
 
-            window.location = "https://whats-to-eat.vercel.app"
+            //window.location = "https://whats-to-eat.vercel.app"
+            window.location = "http://localhost:3000/"
         }
     }
 
